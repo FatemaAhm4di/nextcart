@@ -7,7 +7,6 @@ import {
   fetchLimitedProducts 
 } from '../services/productsApi'
 
-// کلیدهای query (برای کش و مدیریت)
 export const productKeys = {
   all: ['products'],
   lists: () => [...productKeys.all, 'list'],
@@ -18,7 +17,6 @@ export const productKeys = {
   byCategory: (category) => [...productKeys.all, 'category', category],
 }
 
-// هوک دریافت همه محصولات
 export const useProducts = (options = {}) => {
   return useQuery({
     queryKey: productKeys.lists(),
@@ -30,7 +28,6 @@ export const useProducts = (options = {}) => {
   })
 }
 
-// هوک دریافت محصول با آیدی
 export const useProduct = (id, options = {}) => {
   return useQuery({
     queryKey: productKeys.detail(id),
@@ -41,7 +38,6 @@ export const useProduct = (id, options = {}) => {
   })
 }
 
-// هوک دریافت دسته‌بندی‌ها
 export const useCategories = (options = {}) => {
   return useQuery({
     queryKey: productKeys.categories(),
@@ -51,7 +47,6 @@ export const useCategories = (options = {}) => {
   })
 }
 
-// هوک دریافت محصولات بر اساس دسته
 export const useProductsByCategory = (category, options = {}) => {
   return useQuery({
     queryKey: productKeys.byCategory(category),
@@ -62,7 +57,6 @@ export const useProductsByCategory = (category, options = {}) => {
   })
 }
 
-// هوک دریافت محصولات محدود
 export const useLimitedProducts = (limit = 8, options = {}) => {
   return useQuery({
     queryKey: [...productKeys.lists(), 'limited', limit],

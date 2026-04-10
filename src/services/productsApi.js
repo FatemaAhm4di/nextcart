@@ -1,58 +1,40 @@
 import axios from 'axios'
 
-const API_BASE_URL = 'https://fakestoreapi.com'
+const API_BASE_URL = 'https://dummyjson.com'
 
-// کلاینت axios با تنظیمات پایه
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 10000,
-  headers: {
-    'Content-Type': 'application/json',
-  },
+  timeout: 15000,
 })
-
-// اینترسپتور برای مدیریت خطاهای全局
-apiClient.interceptors.response.use(
-  (response) => response,
-  (error) => {
-    if (error.code === 'ECONNABORTED') {
-      return Promise.reject(new Error('درخواست با تایم‌اوت مواجه شد'))
-    }
-    if (!error.response) {
-      return Promise.reject(new Error('مشکل در ارتباط با سرور'))
-    }
-    return Promise.reject(error)
-  }
-)
-
-// ============== توابع API ==============
 
 // دریافت همه محصولات
 export const fetchProducts = async () => {
-  const { data } = await apiClient.get('/products')
-  return data
+  const response = await apiClient.get('/products?limit=30')
+  return response.data.products
 }
 
 // دریافت محصول با آیدی
 export const fetchProductById = async (id) => {
-  const { data } = await apiClient.get(`/products/${id}`)
-  return data
+  const response = await apiClient.get(`/products/${id}`)
+  return response.data
 }
 
-// دریافت دسته‌بندی‌ها
+// دریافت دسته‌بندی‌ها (اصلاح شده)
 export const fetchCategories = async () => {
-  const { data } = await apiClient.get('/products/categories')
-  return data
+  const response = await apiClient.get('/products/categories')
+  // DummyJSON برمیگردونه: [{slug, name, url}] -> استخراج name
+  const categories = response.data.map(cat => cat.name || cat)
+  return categories
 }
 
 // دریافت محصولات بر اساس دسته‌بندی
 export const fetchProductsByCategory = async (category) => {
-  const { data } = await apiClient.get(`/products/category/${category}`)
-  return data
+  const response = await apiClient.get(`/products/category/${category}`)
+  return response.data.products
 }
 
-// دریافت محصولات محدود (برای صفحه اصلی)
+// دریافت محصولات محدود
 export const fetchLimitedProducts = async (limit = 8) => {
-  const { data } = await apiClient.get(`/products?limit=${limit}`)
-  return data
+  const response = await apiClient.get(`/products?limit=${limit}`)
+  return response.data.products
 }
