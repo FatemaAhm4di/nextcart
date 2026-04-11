@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { FiSun, FiMoon } from 'react-icons/fi'
-import { useSettings } from '../../context/SettingsContext'
+import { useSettings } from '../../hooks/useSettings'
 
 const ThemeToggle = memo(() => {
   const { theme, toggleTheme } = useSettings()

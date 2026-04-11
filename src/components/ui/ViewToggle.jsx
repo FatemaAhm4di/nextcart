@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { FiGrid, FiList } from 'react-icons/fi'
-import { useSettings } from '../../context/SettingsContext'
+import { useSettings } from '../../hooks/useSettings'
 
 const ViewToggle = memo(() => {
   const { viewMode, toggleViewMode } = useSettings()
