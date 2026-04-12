@@ -1,18 +1,14 @@
-import { useParams, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useProduct } from '../hooks/useProducts'
-import { addItem } from '../features/cart/cartSlice'
-import { formatPrice } from '../utils/formatPrice'
-import Loader from '../components/ui/Loader'
-import Error from '../components/ui/Error'
-import { FiShoppingCart, FiArrowLeft, FiStar, FiTruck, FiShield, FiRefreshCw } from 'react-icons/fi'
-import toast from 'react-hot-toast'
+import { useParams } from "react-router-dom";
+import { useProduct } from '../hooks/useProducts'  
+import { useDispatch } from "react-redux";
+import { addItem } from "../features/cart/cartSlice";  // ✅ اصلاح شد
+import toast from "react-hot-toast";
 
-const ProductDetails = () => {
-  const { id } = useParams()
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const { data: product, isLoading, error, refetch } = useProduct(id)
+export default function ProductDetails() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
+
+  const { data: product, isLoading, isError, error } = useProduct(id);  // ✅ اصلاح شد
 
   const handleAddToCart = () => {
     dispatch(addItem({
@@ -21,115 +17,71 @@ const ProductDetails = () => {
       price: product.price,
       image: product.image,
       category: product.category,
-    }))
+    }));
     
-    toast.success(`${product.title.slice(0, 40)}... added to cart!`, {
-      icon: '🛒',
+    toast.success(`${product.title.slice(0, 30)} added to cart!`, {
+      icon: "🛒",
       duration: 2000,
-    })
+    });
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
   }
 
-  if (isLoading) return <Loader />
-  if (error) return <Error message={error.message} onRetry={refetch} />
-  if (!product) return <Error message="Product not found" onRetry={() => navigate('/')} />
+  if (isError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-red-500">
+        {error?.message || "Failed to load product"}
+      </div>
+    );
+  }
+
+  if (!product) return null;
 
   return (
-    <div className="container-custom py-8 animate-fade-in">
-      {/* دکمه بازگشت */}
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-brand-roseDark transition-colors duration-300 mb-6 group"
-      >
-        <FiArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-        Back to Products
-      </button>
+    <div className="min-h-screen bg-bg-light dark:bg-bg-dark p-6">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-10 bg-card-light dark:bg-card-dark p-6 rounded-xl shadow-lg">
+        
+        {/* Image */}
+        <div className="flex items-center justify-center">
+          <img
+            src={product.image}
+            alt={product.title}
+            className="h-80 object-contain"
+          />
+        </div>
 
-      {/* جزئیات محصول */}
-      <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-xl overflow-hidden">
-        <div className="flex flex-col lg:flex-row gap-8 p-6 lg:p-8">
-          
-          {/* تصویر محصول */}
-          <div className="lg:w-1/2">
-            <div className="sticky top-8 bg-gradient-to-br from-brand-roseLight/20 to-brand-roseMedium/10 rounded-2xl p-8 flex items-center justify-center">
-              <img
-                src={product.image}
-                alt={product.title}
-                className="max-w-full max-h-96 object-contain hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          </div>
+        {/* Info */}
+        <div className="flex flex-col gap-4">
+          <h1 className="text-2xl font-bold text-text-main dark:text-white">
+            {product.title}
+          </h1>
 
-          {/* اطلاعات محصول */}
-          <div className="lg:w-1/2 space-y-6">
-            {/* دسته‌بندی */}
-            <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-xs text-brand-roseDark bg-brand-roseLight/50 px-3 py-1 rounded-full capitalize">
-                {product.category}
-              </span>
-              <div className="flex items-center gap-1 text-yellow-400">
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-                <FiStar className="fill-current" />
-              </div>
-              <span className="text-sm text-gray-500">(4.8)</span>
-            </div>
+          <p className="text-text-secondary dark:text-gray-300 text-sm leading-relaxed">
+            {product.description}
+          </p>
 
-            {/* عنوان */}
-            <h1 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">
-              {product.title}
-            </h1>
+          <p className="text-primary text-xl font-bold">
+            ${product.price}
+          </p>
 
-            {/* توضیحات */}
-            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              {product.description}
-            </p>
+          <p className="text-sm text-text-secondary dark:text-gray-400 capitalize">
+            Category: {product.category}
+          </p>
 
-            {/* قیمت */}
-            <div className="border-t border-b border-gray-200 dark:border-gray-700 py-4">
-              <div className="flex items-baseline gap-3">
-                <span className="text-4xl font-bold text-brand-roseDark">
-                  {formatPrice(product.price)}
-                </span>
-                <span className="text-sm text-gray-400 line-through">
-                  {formatPrice(product.price * 1.2)}
-                </span>
-                <span className="text-sm text-green-600 dark:text-green-400 font-medium">
-                  Save 20%
-                </span>
-              </div>
-            </div>
-
-            {/* ویژگی‌ها */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                <FiTruck className="text-brand-roseDark text-xl" />
-                <span>Free shipping on orders over $50</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                <FiShield className="text-brand-roseDark text-xl" />
-                <span>2-year warranty included</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-600 dark:text-gray-400">
-                <FiRefreshCw className="text-brand-roseDark text-xl" />
-                <span>30-day easy returns</span>
-              </div>
-            </div>
-
-            {/* دکمه افزودن به سبد خرید */}
-            <button
-              onClick={handleAddToCart}
-              className="w-full btn-primary flex items-center justify-center gap-3 text-lg py-4"
-            >
-              <FiShoppingCart className="text-2xl" />
-              Add to Cart
-            </button>
-          </div>
+          <button
+            onClick={handleAddToCart}
+            className="btn-primary py-3 rounded-lg transition mt-4"
+          >
+            Add to Cart
+          </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
-
-export default ProductDetails

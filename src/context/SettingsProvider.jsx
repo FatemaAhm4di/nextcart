@@ -1,26 +1,36 @@
-import { useReducer } from 'react'
-import { SettingsContext } from './SettingsContext'
-import { settingsReducer, initialState } from './settingsReducer'
+import { useReducer } from "react";
+import { SettingsContext } from "./SettingsContext";
 
-export const SettingsProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(settingsReducer, initialState)
+const initialState = {
+  theme: "light",
+  view: "grid",
+};
 
-  const toggleTheme = () => dispatch({ type: 'TOGGLE_THEME' })
-  const toggleViewMode = () => dispatch({ type: 'TOGGLE_VIEW' })
-  const setCategory = (category) => dispatch({ type: 'SET_CATEGORY', payload: category })
+function reducer(state, action) {
+  switch (action.type) {
+    case "TOGGLE_THEME":
+      return {
+        ...state,
+        theme: state.theme === "light" ? "dark" : "light",
+      };
 
-  const value = {
-    theme: state.theme,
-    viewMode: state.viewMode,
-    selectedCategory: state.selectedCategory,
-    toggleTheme,
-    toggleViewMode,
-    setCategory,
+    case "SET_VIEW":
+      return {
+        ...state,
+        view: action.payload,
+      };
+
+    default:
+      return state;
   }
+}
+
+export default function SettingsProvider({ children }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <SettingsContext.Provider value={value}>
+    <SettingsContext.Provider value={{ ...state, dispatch }}>
       {children}
     </SettingsContext.Provider>
-  )
+  );
 }

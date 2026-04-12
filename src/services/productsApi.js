@@ -19,7 +19,7 @@ export const fetchProductById = async (id) => {
   return response.data
 }
 
-// دریافت دسته‌بندی‌ها (اصلاح شده)
+// دریافت دسته‌بندی‌ها
 export const fetchCategories = async () => {
   const response = await apiClient.get('/products/categories')
   // DummyJSON برمیگردونه: [{slug, name, url}] -> استخراج name

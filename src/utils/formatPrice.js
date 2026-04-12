@@ -1,6 +1,4 @@
 export const formatPrice = (price) => {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD'
-  }).format(price)
+  if (!price && price !== 0) return '$0.00'
+  return `$${Number(price).toFixed(2)}`
 }

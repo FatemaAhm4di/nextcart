@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-// بارگذاری از localStorage در شروع
 const loadFromStorage = () => {
   try {
     const saved = localStorage.getItem('nexcart_cart')
@@ -17,7 +16,6 @@ const loadFromStorage = () => {
   }
 }
 
-// ذخیره در localStorage
 const saveToStorage = (state) => {
   try {
     localStorage.setItem('nexcart_cart', JSON.stringify({
@@ -36,7 +34,6 @@ const cartSlice = createSlice({
   name: 'cart',
   initialState,
   reducers: {
-    // اضافه کردن محصول
     addItem: (state, action) => {
       const existingItem = state.items.find(item => item.id === action.payload.id)
       
@@ -51,14 +48,11 @@ const cartSlice = createSlice({
         })
       }
       
-      // محاسبه مجدد
       state.totalQuantity = state.items.reduce((sum, item) => sum + item.quantity, 0)
       state.totalPrice = state.items.reduce((sum, item) => sum + item.totalPrice, 0)
-      
       saveToStorage(state)
     },
     
-    // حذف محصول
     removeItem: (state, action) => {
       state.items = state.items.filter(item => item.id !== action.payload)
       state.totalQuantity = state.items.reduce((sum, item) => sum + item.quantity, 0)
@@ -66,7 +60,6 @@ const cartSlice = createSlice({
       saveToStorage(state)
     },
     
-    // افزایش تعداد
     increaseQuantity: (state, action) => {
       const item = state.items.find(item => item.id === action.payload)
       if (item) {
@@ -78,7 +71,6 @@ const cartSlice = createSlice({
       }
     },
     
-    // کاهش تعداد
     decreaseQuantity: (state, action) => {
       const item = state.items.find(item => item.id === action.payload)
       if (item && item.quantity > 1) {
@@ -90,7 +82,6 @@ const cartSlice = createSlice({
       }
     },
     
-    // خالی کردن سبد خرید
     clearCart: (state) => {
       state.items = []
       state.totalQuantity = 0
@@ -100,7 +91,7 @@ const cartSlice = createSlice({
   },
 })
 
-// اکشن‌ها برای استفاده در کامپوننت‌ها
+// ✅ اکشن‌ها
 export const {
   addItem,
   removeItem,
@@ -109,11 +100,9 @@ export const {
   clearCart,
 } = cartSlice.actions
 
-// سلیکتورها برای خواندن دیتا
+// ✅ سلیکتورها
 export const selectCartItems = (state) => state.cart.items
 export const selectCartTotalQuantity = (state) => state.cart.totalQuantity
 export const selectCartTotalPrice = (state) => state.cart.totalPrice
-export const selectCartItemById = (id) => (state) => 
-  state.cart.items.find(item => item.id === id)
 
 export default cartSlice.reducer
