@@ -2,29 +2,36 @@ import { FiAlertCircle, FiRefreshCw } from 'react-icons/fi'
 
 const Error = ({ message, onRetry, fullScreen = false }) => {
   const wrapperClass = fullScreen 
-    ? 'fixed inset-0 flex items-center justify-center bg-[#F5FAE1] dark:bg-[#1a1a2e] z-50'
-    : 'flex flex-col items-center justify-center p-8 min-h-[300px]'
+    ? 'fixed inset-0 flex items-center justify-center bg-[#D5E7B5] dark:bg-[#1a1a2e] z-50'
+    : 'flex flex-col items-center justify-center p-8 min-h-[300px] bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-lg'
 
   return (
     <div className={wrapperClass}>
       <div className="text-center max-w-md mx-auto animate-fade-in">
-        <div className="relative inline-block">
-          <div className="absolute inset-0 bg-[#7C3AED]/20 rounded-full blur-xl animate-pulse"></div>
-          <FiAlertCircle className="relative text-7xl text-[#7C3AED] mx-auto mb-4 animate-bounce" />
+        
+        {/* Icon Container */}
+        <div className="relative inline-block mb-4">
+          <div className="absolute inset-0 bg-[#AE2448]/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="relative w-24 h-24 bg-[#AE2448]/10 rounded-full flex items-center justify-center mx-auto">
+            <FiAlertCircle className="text-5xl text-[#AE2448] animate-bounce" />
+          </div>
         </div>
         
-        <h3 className="text-2xl font-bold text-[#896C6C] dark:text-[#E2E8F0] mb-2">
+        {/* Title */}
+        <h3 className="text-2xl font-bold text-[#2D3A2B] dark:text-white mb-3">
           Oops! Something went wrong
         </h3>
         
-        <p className="text-[#896C6C]/70 dark:text-[#E2E8F0]/70 mb-6">
+        {/* Message */}
+        <p className="text-[#2D3A2B]/60 dark:text-gray-400 mb-6">
           {message || 'An unexpected error occurred. Please try again.'}
         </p>
         
+        {/* Retry Button */}
         {onRetry && (
           <button
             onClick={onRetry}
-            className="btn-primary inline-flex items-center gap-2"
+            className="inline-flex items-center gap-2 bg-[#AE2448] hover:bg-[#6E1A37] text-white px-6 py-2.5 rounded-xl font-medium transition-all duration-300 hover:scale-105 shadow-md"
           >
             <FiRefreshCw className="text-lg" />
             Try Again

@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { FiShoppingCart, FiHeart, FiStar } from 'react-icons/fi'
-import { addItem } from '../../features/cart/cartSlice'  // ✅ addToCart -> addItem
+import { addItem } from '../../features/cart/cartSlice'
 import { formatPrice } from '../../utils/formatPrice'
 import toast from 'react-hot-toast'
 import { useSettings } from '../../hooks/useSettings'
@@ -25,10 +25,11 @@ const ProductCard = memo(({ product }) => {
     })
   }
 
+  // حالت لیست ویو
   if (viewMode === 'list') {
     return (
-      <div className="flex flex-col sm:flex-row gap-4 bg-card-light dark:bg-card-dark rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group">
-        <div className="sm:w-32 h-32 bg-secondary/20 flex items-center justify-center p-2">
+      <div className="flex flex-col sm:flex-row gap-4 bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-[#72BAA9]/20">
+        <div className="sm:w-32 h-32 bg-[#72BAA9]/10 flex items-center justify-center p-3">
           <img 
             src={product.image} 
             alt={product.title}
@@ -36,29 +37,29 @@ const ProductCard = memo(({ product }) => {
             loading="lazy"
           />
         </div>
-        <div className="flex-1 p-4 sm:p-2 sm:pr-4">
+        <div className="flex-1 p-4 sm:p-3 sm:pr-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
             <div>
-              <h3 className="font-semibold text-text-main dark:text-white line-clamp-1">
+              <h3 className="font-semibold text-[#2D3A2B] dark:text-white line-clamp-1 text-base">
                 {product.title}
               </h3>
-              <p className="text-sm text-text-secondary dark:text-gray-400 capitalize mt-1">
+              <p className="text-xs text-[#2D3A2B]/60 dark:text-gray-400 capitalize mt-1">
                 {product.category}
               </p>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="text-2xl font-bold text-primary">
+            <div className="flex items-center gap-3">
+              <span className="text-xl font-bold text-[#AE2448]">
                 {formatPrice(product.price)}
               </span>
               <button
                 onClick={handleAddToCart}
-                className="btn-primary !px-4 !py-2 flex items-center gap-2 text-sm"
+                className="bg-[#AE2448] hover:bg-[#6E1A37] text-white px-3 py-1.5 rounded-lg flex items-center gap-1 text-sm transition-all duration-300 hover:scale-105"
               >
-                <FiShoppingCart /> Add
+                <FiShoppingCart className="text-sm" /> Add
               </button>
             </div>
           </div>
-          <p className="text-text-secondary dark:text-gray-300 text-sm mt-2 line-clamp-2">
+          <p className="text-[#2D3A2B]/60 dark:text-gray-400 text-xs mt-2 line-clamp-2">
             {product.description}
           </p>
         </div>
@@ -66,51 +67,60 @@ const ProductCard = memo(({ product }) => {
     )
   }
 
+  // حالت گرید ویو (پیش‌فرض) - سایز استاندارد
   return (
-    <div className="group relative bg-card-light dark:bg-card-dark rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden card-hover">
-      <button className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-primary">
-        <FiHeart className="text-lg" />
+    <div className="group relative bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden card-hover border border-[#72BAA9]/20">
+      
+      {/* Wishlist Button */}
+      <button className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-[#AE2448]">
+        <FiHeart className="text-base" />
       </button>
       
-      <div className="h-48 bg-gradient-to-br from-secondary/30 to-secondary/20 flex items-center justify-center p-4">
+      {/* Image Container - سایز استاندارد 180px */}
+      <div className="h-44 bg-gradient-to-br from-[#72BAA9]/20 to-[#72BAA9]/5 flex items-center justify-center p-4">
         <img 
           src={product.image} 
           alt={product.title}
-          className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-500"
+          className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
           loading="lazy"
         />
       </div>
       
-      <div className="p-4">
-        <span className="text-xs text-primary-dark bg-primary-light/30 px-2 py-1 rounded-full capitalize">
+      {/* Content */}
+      <div className="p-3">
+        {/* Category Badge */}
+        <span className="text-xs text-white bg-[#AE2448] px-2 py-0.5 rounded-full capitalize inline-block">
           {product.category}
         </span>
         
-        <h3 className="font-semibold text-text-main dark:text-white mt-2 line-clamp-2 h-12">
+        {/* Title - 2 lines max */}
+        <h3 className="font-semibold text-[#2D3A2B] dark:text-white mt-2 line-clamp-2 h-10 text-sm">
           {product.title}
         </h3>
         
-        <div className="flex items-center gap-1 mt-2">
-          <div className="flex text-yellow-400">
-            <FiStar className="fill-current" />
-            <FiStar className="fill-current" />
-            <FiStar className="fill-current" />
-            <FiStar className="fill-current" />
-            <FiStar className="fill-current" />
+        {/* Rating */}
+        <div className="flex items-center gap-1 mt-1">
+          <div className="flex text-yellow-500 text-xs">
+            <FiStar className="fill-current w-3 h-3" />
+            <FiStar className="fill-current w-3 h-3" />
+            <FiStar className="fill-current w-3 h-3" />
+            <FiStar className="fill-current w-3 h-3" />
+            <FiStar className="fill-current w-3 h-3" />
           </div>
-          <span className="text-xs text-text-secondary">(4.5)</span>
+          <span className="text-xs text-[#2D3A2B]/50 dark:text-gray-400">(4.5)</span>
         </div>
         
+        {/* Price & Cart Button */}
         <div className="flex items-center justify-between mt-3">
-          <span className="text-xl font-bold text-primary">
+          <span className="text-lg font-bold text-[#AE2448]">
             {formatPrice(product.price)}
           </span>
           <button
             onClick={handleAddToCart}
-            className="p-2 rounded-full bg-primary text-white hover:bg-primary-dark transition-all duration-300 hover:scale-110"
+            className="p-1.5 rounded-full bg-[#AE2448] text-white hover:bg-[#6E1A37] transition-all duration-300 hover:scale-110"
             aria-label="Add to cart"
           >
-            <FiShoppingCart className="text-lg" />
+            <FiShoppingCart className="text-sm" />
           </button>
         </div>
       </div>
