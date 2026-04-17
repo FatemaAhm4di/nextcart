@@ -20,7 +20,7 @@ export default {
           dark: '#1a1a2e',
         },
         card: {
-          light: '#FFFFFF',
+          light: '#FFFFeF',
           dark: '#2a2a2a',
         },
         text: {
