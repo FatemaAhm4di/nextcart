@@ -112,7 +112,7 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Navigation - با هاور بهتر */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1 lg:gap-2">
               {navLinks.map((link) => (
                 <Link
@@ -127,18 +127,14 @@ export default function Navbar() {
                     }
                   `}
                 >
-                  {/* Active Background */}
                   {isActive(link.path) && (
                     <span className="absolute inset-0 bg-[#AE2448] rounded-full -z-0"></span>
                   )}
-                  
-                  {/* Hover Background */}
                   <span className={`
                     absolute inset-0 bg-[#72BAA9]/20 rounded-full -z-0 
                     transition-all duration-300 scale-0 group-hover:scale-100
                     ${isActive(link.path) ? 'hidden' : ''}
                   `}></span>
-                  
                   <span className="relative z-10 flex items-center gap-2">
                     {link.icon}
                     <span>{link.name}</span>
@@ -196,10 +192,10 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Wishlist Button */}
-              <button className="hidden sm:flex p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 hover:scale-110 hover:text-[#AE2448] group">
+              {/* Wishlist Button - لینک به صفحه ویسلینت */}
+              <Link to="/wishlist" className="hidden sm:flex p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 hover:scale-110 group">
                 <FiHeart className="text-xl text-[#2D3A2B] dark:text-[#E2E8F0] group-hover:text-[#AE2448] transition-colors" />
-              </button>
+              </Link>
 
               {/* Cart Button */}
               <Link to="/cart" className="relative p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 hover:scale-110 group">

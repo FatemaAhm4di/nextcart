@@ -1,7 +1,8 @@
 import { memo } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { FiShoppingCart, FiHeart, FiStar } from 'react-icons/fi'
 import { addItem } from '../../features/cart/cartSlice'
+import { toggleWishlist, selectWishlistItems } from '../../features/wishlist/wishlistSlice'
 import { formatPrice } from '../../utils/formatPrice'
 import toast from 'react-hot-toast'
 import { useSettings } from '../../hooks/useSettings'
@@ -9,6 +10,8 @@ import { useSettings } from '../../hooks/useSettings'
 const ProductCard = memo(({ product }) => {
   const dispatch = useDispatch()
   const { viewMode } = useSettings()
+  const wishlistItems = useSelector(selectWishlistItems)
+  const isWishlisted = wishlistItems.some(item => item.id === product.id)
 
   const handleAddToCart = () => {
     dispatch(addItem({
@@ -25,11 +28,34 @@ const ProductCard = memo(({ product }) => {
     })
   }
 
+  const handleToggleWishlist = () => {
+    dispatch(toggleWishlist(product))
+    if (!isWishlisted) {
+      toast.success(`${product.title.slice(0, 30)} added to wishlist!`, {
+        icon: '❤️',
+        duration: 2000,
+      })
+    } else {
+      toast.success(`${product.title.slice(0, 30)} removed from wishlist!`, {
+        icon: '💔',
+        duration: 2000,
+      })
+    }
+  }
+
   // حالت لیست ویو
   if (viewMode === 'list') {
     return (
       <div className="flex flex-col sm:flex-row gap-4 bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-[#72BAA9]/20">
-        <div className="sm:w-32 h-32 bg-[#72BAA9]/10 flex items-center justify-center p-3">
+        <div className="sm:w-32 h-32 bg-[#72BAA9]/10 flex items-center justify-center p-3 relative">
+          <button
+            onClick={handleToggleWishlist}
+            className={`absolute top-2 right-2 p-1.5 rounded-full backdrop-blur-sm transition-all duration-300 z-10 ${
+              isWishlisted ? 'bg-[#AE2448] text-white' : 'bg-white/80 dark:bg-gray-800/80 text-gray-500 hover:text-[#AE2448]'
+            }`}
+          >
+            <FiHeart className={`text-sm ${isWishlisted ? 'fill-white' : ''}`} />
+          </button>
           <img 
             src={product.image} 
             alt={product.title}
@@ -67,16 +93,23 @@ const ProductCard = memo(({ product }) => {
     )
   }
 
-  // حالت گرید ویو (پیش‌فرض) - سایز استاندارد
+  // حالت گرید ویو (پیش‌فرض)
   return (
     <div className="group relative bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden card-hover border border-[#72BAA9]/20">
       
       {/* Wishlist Button */}
-      <button className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:text-[#AE2448]">
-        <FiHeart className="text-base" />
+      <button
+        onClick={handleToggleWishlist}
+        className={`absolute top-3 right-3 z-10 p-2 rounded-full backdrop-blur-sm transition-all duration-300 ${
+          isWishlisted 
+            ? 'bg-[#AE2448] text-white' 
+            : 'bg-white/80 dark:bg-gray-800/80 text-gray-500 hover:text-[#AE2448] opacity-0 group-hover:opacity-100'
+        }`}
+      >
+        <FiHeart className={`text-base ${isWishlisted ? 'fill-white' : ''}`} />
       </button>
       
-      {/* Image Container - سایز استاندارد 180px */}
+      {/* Image Container */}
       <div className="h-44 bg-gradient-to-br from-[#72BAA9]/20 to-[#72BAA9]/5 flex items-center justify-center p-4">
         <img 
           src={product.image} 
@@ -93,7 +126,7 @@ const ProductCard = memo(({ product }) => {
           {product.category}
         </span>
         
-        {/* Title - 2 lines max */}
+        {/* Title */}
         <h3 className="font-semibold text-[#2D3A2B] dark:text-white mt-2 line-clamp-2 h-10 text-sm">
           {product.title}
         </h3>
