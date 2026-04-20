@@ -1,11 +1,12 @@
-// src/app/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from '../features/cart/cartSlice';
 import wishlistReducer from '../features/wishlist/wishlistSlice';
+import authReducer from '../features/auth/authSlice';  // ✅ اضافه کن
 
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
     wishlist: wishlistReducer,
+    auth: authReducer,  // ✅ اضافه کن
   },
 });

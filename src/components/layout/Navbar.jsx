@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useSettings } from "../../hooks/useSettings";
+import { selectIsAuthenticated, selectUser, logout } from "../../features/auth/authSlice";
 import { 
   FiShoppingCart, 
   FiMenu, 
@@ -14,22 +15,28 @@ import {
   FiInfo,
   FiPhone,
   FiHome,
-  FiHeart
+  FiHeart,
+  FiLogOut,
+  FiUserCheck
 } from "react-icons/fi";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const [showResults, setShowResults] = useState(false);
   const searchRef = useRef(null);
+  const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const cartCount = useSelector(
     (state) => state.cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0
   );
-
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const user = useSelector(selectUser);
   const { theme, toggleTheme } = useSettings();
 
   // جستجو
@@ -61,10 +68,22 @@ export default function Navbar() {
     };
   }, [searchTerm]);
 
+  // بستن جستجو با کلیک خارج
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setShowResults(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // بستن دراپ داون کاربر
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsUserDropdownOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -84,6 +103,12 @@ export default function Navbar() {
     navigate(`/product/${id}`);
     setShowResults(false);
     setSearchTerm("");
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+    setIsUserDropdownOpen(false);
+    navigate("/");
   };
 
   const isActive = (path) => location.pathname === path;
@@ -192,7 +217,7 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Wishlist Button - لینک به صفحه ویسلینت */}
+              {/* Wishlist Button */}
               <Link to="/wishlist" className="hidden sm:flex p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 hover:scale-110 group">
                 <FiHeart className="text-xl text-[#2D3A2B] dark:text-[#E2E8F0] group-hover:text-[#AE2448] transition-colors" />
               </Link>
@@ -219,10 +244,56 @@ export default function Navbar() {
                 )}
               </button>
 
-              {/* User Button */}
-              <button className="hidden sm:flex p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 hover:scale-110 group">
-                <FiUser className="text-xl text-[#2D3A2B] dark:text-[#E2E8F0] group-hover:text-[#AE2448] transition-colors" />
-              </button>
+              {/* User Button / Dropdown */}
+              <div className="relative" ref={dropdownRef}>
+                {isAuthenticated ? (
+                  <>
+                    <button
+                      onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
+                      className="flex items-center gap-2 p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 group"
+                    >
+                      <div className="w-8 h-8 bg-[#AE2448] rounded-full flex items-center justify-center">
+                        <FiUser className="text-white text-sm" />
+                      </div>
+                      <span className="hidden sm:inline text-sm text-[#2D3A2B] dark:text-white">
+                        {user?.name?.split(' ')[0] || user?.email?.split('@')[0]}
+                      </span>
+                    </button>
+
+                    {isUserDropdownOpen && (
+                      <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#2a2a2a] rounded-xl shadow-xl border border-[#72BAA9]/30 overflow-hidden z-50 animate-fade-in">
+                        <div className="p-3 border-b border-[#72BAA9]/30">
+                          <p className="font-medium text-[#2D3A2B] dark:text-white">{user?.name}</p>
+                          <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email}</p>
+                        </div>
+                        <div className="py-2">
+                          <Link
+                            to="/profile"
+                            onClick={() => setIsUserDropdownOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-[#2D3A2B] dark:text-gray-300 hover:bg-[#72BAA9]/20 transition-colors"
+                          >
+                            <FiUserCheck /> My Profile
+                          </Link>
+                          <button
+                            onClick={handleLogout}
+                            className="w-full flex items-center gap-3 px-4 py-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                          >
+                            <FiLogOut /> Logout
+                          </button>
+                        </div>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    to="/login"
+                    className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#AE2448] text-white hover:bg-[#6E1A37] transition-all duration-300 hover:scale-105"
+                  >
+                    <FiUser className="text-sm" />
+                    <span className="hidden sm:inline text-sm font-medium">Sign In</span>
+                  </Link>
+                )}
+              </div>
 
               {/* Mobile Menu Button */}
               <button
@@ -248,7 +319,7 @@ export default function Navbar() {
         className={`
           fixed top-16 left-0 right-0 bg-white dark:bg-[#1a1a2e] shadow-xl z-40 md:hidden
           transition-all duration-300 ease-in-out overflow-hidden
-          ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
+          ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
         `}
       >
         <div className="flex flex-col p-4 space-y-2">
@@ -271,13 +342,35 @@ export default function Navbar() {
           >
             <FiHeart className="group-hover:scale-110 transition-transform" /> Wishlist
           </Link>
-          <Link
-            to="/profile"
-            onClick={() => setIsMobileMenuOpen(false)}
-            className="flex items-center gap-3 py-3 px-4 rounded-xl text-[#2D3A2B] dark:text-[#E2E8F0] hover:bg-[#72BAA9]/20 hover:text-[#AE2448] transition-all duration-300 group"
-          >
-            <FiUser className="group-hover:scale-110 transition-transform" /> Profile
-          </Link>
+          
+          {isAuthenticated ? (
+            <>
+              <Link
+                to="/profile"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="flex items-center gap-3 py-3 px-4 rounded-xl text-[#2D3A2B] dark:text-[#E2E8F0] hover:bg-[#72BAA9]/20 hover:text-[#AE2448] transition-all duration-300 group"
+              >
+                <FiUserCheck className="group-hover:scale-110 transition-transform" /> Profile
+              </Link>
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsMobileMenuOpen(false);
+                }}
+                className="flex items-center gap-3 py-3 px-4 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all duration-300"
+              >
+                <FiLogOut /> Logout
+              </button>
+            </>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="flex items-center gap-3 py-3 px-4 rounded-xl bg-[#AE2448] text-white hover:bg-[#6E1A37] transition-all duration-300"
+            >
+              <FiUser /> Sign In
+            </Link>
+          )}
         </div>
       </div>
     </>
