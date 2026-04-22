@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { register } from '../features/auth/authSlice';
-import { FiUser, FiMail, FiLock, FiArrowRight } from 'react-icons/fi';
+import { FiUser, FiMail, FiLock } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -12,17 +12,16 @@ const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // داخل handleSubmit
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if (name && email && password) {
-    dispatch(register({ name, email }));
-    toast.success('Registration successful!', { icon: '🎉' });
-    navigate('/');
-  } else {
-    toast.error('Please fill all fields', { icon: '❌' });
-  }
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name && email && password) {
+      dispatch(register({ name, email }));
+      toast.success('Registration successful!', { icon: '🎉' });
+      navigate('/');
+    } else {
+      toast.error('Please fill all fields', { icon: '❌' });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center py-12 px-4">

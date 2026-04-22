@@ -11,20 +11,16 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // داخل handleSubmit
-const handleSubmit = (e) => {
-  e.preventDefault();
-  if (email && password) {
-    dispatch(login({ 
-      email, 
-      name: email.split('@')[0] 
-    }));
-    toast.success('Login successful!', { icon: '🎉' });
-    navigate('/');
-  } else {
-    toast.error('Please fill all fields', { icon: '❌' });
-  }
-};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (email && password) {
+      dispatch(login({ email, name: email.split('@')[0] }));
+      toast.success('Login successful!', { icon: '🎉' });
+      navigate('/');
+    } else {
+      toast.error('Please fill all fields', { icon: '❌' });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center py-12 px-4">

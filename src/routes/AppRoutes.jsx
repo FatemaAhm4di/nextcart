@@ -9,6 +9,8 @@ import Wishlist from "../pages/Wishlist";
 import Login from "../pages/Login";        // ✅ اضافه کن
 import Register from "../pages/Register";  // ✅ اضافه کن
 import ProfilePage from "../pages/ProfilePage";
+import MyOrders from "../pages/MyOrders";
+import SettingsPage from "../pages/SettingsPage";
 
 
 export default function AppRoutes() {
@@ -24,6 +26,8 @@ export default function AppRoutes() {
       <Route path="/login" element={<Login />} />        // ✅ اضافه کن
       <Route path="/register" element={<Register />} />  // ✅ اضافه کن
       <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/orders" element={<MyOrders />} />
+<Route path="/settings" element={<SettingsPage />} />
     </Routes>
   );
 }

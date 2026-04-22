@@ -17,7 +17,10 @@ import {
   FiHome,
   FiHeart,
   FiLogOut,
-  FiUserCheck
+  FiUserCheck,
+  FiSettings,
+  FiBell,
+  FiTag
 } from "react-icons/fi";
 
 export default function Navbar() {
@@ -244,41 +247,77 @@ export default function Navbar() {
                 )}
               </button>
 
-              {/* User Button / Dropdown */}
+              {/* User Button / Dropdown - اصلاح شده با آواتار */}
               <div className="relative" ref={dropdownRef}>
-                {isAuthenticated ? (
+                {isAuthenticated && user ? (
                   <>
                     <button
                       onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
-                      className="flex items-center gap-2 p-2 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 group"
+                      className="flex items-center gap-2 p-1.5 rounded-full hover:bg-[#72BAA9]/20 transition-all duration-300 group"
                     >
-                      <div className="w-8 h-8 bg-[#AE2448] rounded-full flex items-center justify-center">
-                        <FiUser className="text-white text-sm" />
-                      </div>
-                      <span className="hidden sm:inline text-sm text-[#2D3A2B] dark:text-white">
-                        {user?.name?.split(' ')[0] || user?.email?.split('@')[0]}
+                      {user.avatar ? (
+                        <img 
+                          src={user.avatar} 
+                          alt={user.name} 
+                          className="w-8 h-8 rounded-full object-cover border-2 border-[#AE2448]"
+                        />
+                      ) : (
+                        <div className="w-8 h-8 bg-gradient-to-br from-[#AE2448] to-[#6E1A37] rounded-full flex items-center justify-center shadow-md">
+                          <FiUser className="text-white text-sm" />
+                        </div>
+                      )}
+                      <span className="hidden sm:inline text-sm font-medium text-[#2D3A2B] dark:text-white">
+                        {user.name?.split(' ')[0] || user.email?.split('@')[0]}
                       </span>
                     </button>
 
                     {isUserDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-48 bg-white dark:bg-[#2a2a2a] rounded-xl shadow-xl border border-[#72BAA9]/30 overflow-hidden z-50 animate-fade-in">
-                        <div className="p-3 border-b border-[#72BAA9]/30">
-                          <p className="font-medium text-[#2D3A2B] dark:text-white">{user?.name}</p>
-                          <p className="text-xs text-gray-500 dark:text-gray-400">{user?.email}</p>
+                      <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-[#2a2a2a] rounded-xl shadow-xl border border-[#72BAA9]/30 overflow-hidden z-50 animate-fade-in">
+                        <div className="p-3 border-b border-[#72BAA9]/30 flex items-center gap-3">
+                          {user.avatar ? (
+                            <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full object-cover" />
+                          ) : (
+                            <div className="w-10 h-10 bg-gradient-to-br from-[#AE2448] to-[#6E1A37] rounded-full flex items-center justify-center">
+                              <FiUser className="text-white text-lg" />
+                            </div>
+                          )}
+                          <div className="flex-1">
+                            <p className="font-semibold text-[#2D3A2B] dark:text-white text-sm">{user.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400 truncate">{user.email}</p>
+                          </div>
                         </div>
                         <div className="py-2">
                           <Link
                             to="/profile"
                             onClick={() => setIsUserDropdownOpen(false)}
-                            className="flex items-center gap-3 px-4 py-2 text-[#2D3A2B] dark:text-gray-300 hover:bg-[#72BAA9]/20 transition-colors"
+                            className="flex items-center gap-3 px-4 py-2.5 text-[#2D3A2B] dark:text-gray-300 hover:bg-[#72BAA9]/20 transition-colors"
                           >
-                            <FiUserCheck /> My Profile
+                            <FiUserCheck className="text-lg" />
+                            <span>My Profile</span>
                           </Link>
+                          <Link
+                            to="/orders"
+                            onClick={() => setIsUserDropdownOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2.5 text-[#2D3A2B] dark:text-gray-300 hover:bg-[#72BAA9]/20 transition-colors"
+                          >
+                            <FiTag className="text-lg" />
+                            <span>My Orders</span>
+                          </Link>
+                          <Link
+                            to="/settings"
+                            onClick={() => setIsUserDropdownOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2.5 text-[#2D3A2B] dark:text-gray-300 hover:bg-[#72BAA9]/20 transition-colors"
+                          >
+                            <FiSettings className="text-lg" />
+                            <span>Settings</span>
+                          </Link>
+                          <div className="border-t border-[#72BAA9]/30 my-1"></div>
                           <button
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-3 px-4 py-2 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+                            className="w-full flex items-center gap-3 px-4 py-2.5 text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
                           >
-                            <FiLogOut /> Logout
+                            <FiLogOut className="text-lg" />
+                            <span>Logout</span>
                           </button>
                         </div>
                       </div>
@@ -287,7 +326,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to="/login"
-                    className="flex items-center gap-2 px-3 py-2 rounded-full bg-[#AE2448] text-white hover:bg-[#6E1A37] transition-all duration-300 hover:scale-105"
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-[#AE2448] to-[#6E1A37] text-white hover:shadow-lg transition-all duration-300 hover:scale-105"
                   >
                     <FiUser className="text-sm" />
                     <span className="hidden sm:inline text-sm font-medium">Sign In</span>
@@ -319,10 +358,27 @@ export default function Navbar() {
         className={`
           fixed top-16 left-0 right-0 bg-white dark:bg-[#1a1a2e] shadow-xl z-40 md:hidden
           transition-all duration-300 ease-in-out overflow-hidden
-          ${isMobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}
+          ${isMobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"}
         `}
       >
         <div className="flex flex-col p-4 space-y-2">
+          {/* User Info in Mobile */}
+          {isAuthenticated && user && (
+            <div className="flex items-center gap-3 p-3 mb-2 bg-[#72BAA9]/10 rounded-xl">
+              {user.avatar ? (
+                <img src={user.avatar} alt={user.name} className="w-10 h-10 rounded-full object-cover" />
+              ) : (
+                <div className="w-10 h-10 bg-gradient-to-br from-[#AE2448] to-[#6E1A37] rounded-full flex items-center justify-center">
+                  <FiUser className="text-white text-lg" />
+                </div>
+              )}
+              <div>
+                <p className="font-semibold text-[#2D3A2B] dark:text-white">{user.name}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
+              </div>
+            </div>
+          )}
+
           {navLinks.map((link) => (
             <Link
               key={link.path}
@@ -366,7 +422,7 @@ export default function Navbar() {
             <Link
               to="/login"
               onClick={() => setIsMobileMenuOpen(false)}
-              className="flex items-center gap-3 py-3 px-4 rounded-xl bg-[#AE2448] text-white hover:bg-[#6E1A37] transition-all duration-300"
+              className="flex items-center gap-3 py-3 px-4 rounded-xl bg-gradient-to-r from-[#AE2448] to-[#6E1A37] text-white hover:shadow-lg transition-all duration-300"
             >
               <FiUser /> Sign In
             </Link>
