@@ -10,8 +10,8 @@ import {
   selectCartTotalPrice,
 } from '../features/cart/cartSlice'
 import { formatPrice } from '../utils/formatPrice'
-import { FiTrash2, FiPlus, FiMinus, FiShoppingBag, FiArrowLeft, FiCreditCard } from 'react-icons/fi'
-import toast from 'react-hot-toast'
+import { FiTrash2, FiPlus, FiMinus, FiShoppingBag, FiArrowLeft, FiCreditCard, FiCheckCircle } from 'react-icons/fi'
+import { toast } from 'sonner'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -21,23 +21,35 @@ const Cart = () => {
 
   const handleIncrease = (id) => {
     dispatch(increaseQuantity(id))
-    toast.success('Quantity increased', { icon: '➕', duration: 1500 })
+    toast.success('Quantity increased', {
+      icon: <FiPlus className="w-4 h-4" />,
+      duration: 1500,
+    })
   }
 
   const handleDecrease = (id) => {
     dispatch(decreaseQuantity(id))
-    toast.success('Quantity decreased', { icon: '➖', duration: 1500 })
+    toast.success('Quantity decreased', {
+      icon: <FiMinus className="w-4 h-4" />,
+      duration: 1500,
+    })
   }
 
   const handleRemove = (id, title) => {
     dispatch(removeItem(id))
-    toast.success(`${title.slice(0, 30)} removed from cart`, { icon: '🗑️', duration: 2000 })
+    toast.success(`${title.slice(0, 30)} removed from cart`, {
+      icon: <FiTrash2 className="w-4 h-4" />,
+      duration: 2000,
+    })
   }
 
   const handleClearCart = () => {
     if (items.length === 0) return
     dispatch(clearCart())
-    toast.success('Cart cleared', { icon: '🧹', duration: 2000 })
+    toast.success('Cart cleared', {
+      icon: <FiCheckCircle className="w-4 h-4" />,
+      duration: 2000,
+    })
   }
 
   if (items.length === 0) {
