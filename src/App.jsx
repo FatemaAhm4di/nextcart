@@ -1,11 +1,15 @@
 import AppRoutes from "./routes/AppRoutes";
 import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-text">
+    <div className="min-h-screen flex flex-col bg-[#D5E7B5] dark:bg-[#1a1a2e]">
       <Navbar />
-      <AppRoutes />
+      <main className="flex-1">
+        <AppRoutes />
+      </main>
+      <Footer />
     </div>
   );
 }
