@@ -48,7 +48,7 @@ const Home = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-[#72BAA9]/20 via-[#D5E7B5] to-[#AE2448]/10 py-12 sm:py-16 md:py-20">
         <div className="container-custom text-center relative z-10 px-4 sm:px-6">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#2D3A2B] dark:text-white mb-3 sm:mb-4 animate-slide-up">
-            Welcome to <span className="text-[#AE2448]">NextCart</span>
+            Welcome to <span className="text-[#a92045]">NextCart</span>
           </h1>
           <p className="text-[#2D3A2B]/70 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
             Discover amazing products at unbeatable prices. Fast shipping & secure payment.
