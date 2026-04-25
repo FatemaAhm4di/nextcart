@@ -1,17 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/product/ProductCard";
 import ProductSkeleton from "../components/ui/ProductSkeleton";
 import ProductFilter from "../components/product/ProductFilter";
 import { FiArrowRight, FiTruck, FiShield, FiRefreshCw, FiAward } from "react-icons/fi";
+import heroImage from "../assets/images/hero-shopping.png";
 
 const Home = () => {
   const { data: allProducts, isLoading } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(6);
+  const [isVisible, setIsVisible] = useState(false);
+  const heroRef = useRef(null);
 
-  // فیلتر بر اساس دسته
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (heroRef.current) observer.observe(heroRef.current);
+    return () => observer.disconnect();
+  }, []);
+
   const filteredProducts = allProducts?.filter((product) => {
     if (selectedCategory === "all") return true;
     return product.category?.toLowerCase() === selectedCategory?.toLowerCase();
@@ -32,9 +48,7 @@ const Home = () => {
       <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-8">
         <div className="container-custom">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
-            {[...Array(6)].map((_, i) => (
-              <ProductSkeleton key={i} />
-            ))}
+            {[...Array(6)].map((_, i) => <ProductSkeleton key={i} />)}
           </div>
         </div>
       </div>
@@ -44,18 +58,49 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e]">
       
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#72BAA9]/20 via-[#D5E7B5] to-[#AE2448]/10 py-12 sm:py-16 md:py-20">
-        <div className="container-custom text-center relative z-10 px-4 sm:px-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#2D3A2B] dark:text-white mb-3 sm:mb-4 animate-slide-up">
-            Welcome to <span className="text-[#a92045]">NextCart</span>
-          </h1>
-          <p className="text-[#2D3A2B]/70 dark:text-gray-300 text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Discover amazing products at unbeatable prices. Fast shipping & secure payment.
-          </p>
-          <Link to="/shop" className="inline-flex items-center gap-2 bg-[#AE2448] hover:bg-[#6E1A37] text-white px-6 sm:px-8 py-2.5 sm:py-3 md:py-4 rounded-full text-sm sm:text-base md:text-lg font-semibold transition-all duration-300 hover:scale-105 shadow-lg">
-            Shop Now <FiArrowRight className="text-sm sm:text-base md:text-lg" />
-          </Link>
+      {/* Hero Section - بدون فاصله از ناوبار */}
+      <section ref={heroRef} className="relative w-full overflow-hidden -mt-0">
+        {/* پس‌زمینه گرادیان */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#AE2448] to-[#6E1A37] z-0"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 md:py-12">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10">
+            
+            {/* متن سمت چپ */}
+            <div className={`flex-1 text-center lg:text-left transition-all duration-700 delay-300 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            }`}>
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight">
+                Welcome to <span className="text-yellow-300">NexCart</span>
+              </h1>
+              <p className="text-white/80 text-xs sm:text-sm md:text-base mb-4 md:mb-5 max-w-lg mx-auto lg:mx-0">
+                Discover amazing products at unbeatable prices. Fast shipping & secure payment.
+              </p>
+              <div className={`transition-all duration-700 delay-500 ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}>
+                <Link 
+                  to="/shop" 
+                  className="inline-flex items-center gap-2 bg-white text-[#AE2448] hover:bg-gray-100 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full font-semibold text-xs sm:text-sm transition-all duration-300 hover:scale-105 shadow-md"
+                >
+                  Shop Now <FiArrowRight className="text-xs sm:text-sm" />
+                </Link>
+              </div>
+            </div>
+
+            {/* تصویر سمت راست */}
+            <div className={`flex-1 flex justify-center transition-all duration-700 delay-500 ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            }`}>
+              <div className="relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px]">
+                <img 
+                  src={heroImage}
+                  alt="NexCart Shopping"
+                  className="relative w-full h-auto drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -74,7 +119,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Categories - ProductFilter */}
+      {/* Categories */}
       <section className="container-custom py-4 px-4 sm:px-6">
         <ProductFilter 
           selectedCategory={selectedCategory} 

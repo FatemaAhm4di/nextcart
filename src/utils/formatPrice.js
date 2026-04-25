@@ -1,4 +1,7 @@
+// src/utils/formatPrice.js
 export const formatPrice = (price) => {
-  if (!price && price !== 0) return '$0.00'
-  return `$${Number(price).toFixed(2)}`
+  if (typeof price !== 'number' || isNaN(price)) {
+    return '$0.00'
+  }
+  return `$${price.toFixed(2)}`
 }

@@ -1,32 +1,19 @@
 import { useState, useRef, useEffect } from 'react'
 import { FiChevronDown, FiGrid } from 'react-icons/fi'
 
-const categories = [
-  "All Products",
+// دسته‌بندی‌هایی که واقعاً محصول دارن (بر اساس API DummyJSON)
+const categoriesList = [
   "Beauty",
   "Fragrances",
   "Furniture",
   "Groceries",
   "Home Decoration",
-  "Kitchen Accessories",
   "Laptops",
-  "Mens Shirts",
-  "Mens Shoes",
   "Mens Watches",
-  "Mobile Accessories",
-  "Motorcycle",
-  "Skin Care",
   "Smartphones",
-  "Sports Accessories",
-  "Sunglasses",
-  "Tablets",
-  "Tops",
-  "Vehicle",
-  "Womens Bags",
-  "Womens Dresses",
   "Womens Jewellery",
-  "Womens Shoes",
-  "Womens Watches"
+  "Mobile Accessories",
+  "Mens Shirts"
 ]
 
 const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
@@ -54,14 +41,13 @@ const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
 
   const displayCategory = selectedCategory === "all" ? "All Products" : selectedCategory
 
-  // فیلتر کردن دسته‌بندی‌ها بر اساس جستجو
-  const filteredCategories = categories.filter(cat =>
+  const filteredCategories = categoriesList.filter(cat =>
     cat.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
   return (
-    <>
-      {/* نمایش دراپ‌داون در موبایل و تبلت (تا 1024px) */}
+    <div className="w-full">
+      {/* نمایش دراپ‌داون در موبایل و تبلت */}
       <div className="block md:hidden relative w-full" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -108,10 +94,10 @@ const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
         )}
       </div>
 
-      {/* نمایش دکمه‌های عادی در دسکتاپ (md به بالا) */}
+      {/* نمایش دکمه‌های عادی در دسکتاپ */}
       <div className="hidden md:flex flex-wrap justify-center gap-3">
         <button
-          onClick={() => setSelectedCategory("all")}
+          onClick={() => handleSelect("all")}
           className={`px-5 py-2.5 rounded-full font-medium transition-all duration-300 ${
             selectedCategory === "all"
               ? "bg-[#AE2448] text-white shadow-lg scale-105"
@@ -120,7 +106,7 @@ const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
         >
           All Products
         </button>
-        {categories.slice(0, 12).map((cat) => (
+        {categoriesList.map((cat) => (
           <button
             key={cat}
             onClick={() => handleSelect(cat)}
@@ -134,7 +120,7 @@ const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
           </button>
         ))}
       </div>
-    </>
+    </div>
   )
 }
 
