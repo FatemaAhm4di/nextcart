@@ -174,15 +174,15 @@ const Footer = () => {
             <ul className="space-y-3 md:space-y-4">
               <li className="flex items-start gap-3 text-xs sm:text-sm text-gray-400 group">
                 <FiMapPin className="text-[#AE2448] text-base sm:text-lg mt-0.5 group-hover:scale-110 transition-transform shrink-0" />
-                <span>123 Shopping Street, New York, NY 10001</span>
+                <span>123 Shopping Street, Herat, Afghanistan</span>
               </li>
               <li className="flex items-center gap-3 text-xs sm:text-sm text-gray-400 group">
                 <FiPhone className="text-[#AE2448] text-base sm:text-lg group-hover:scale-110 transition-transform shrink-0" />
-                <span>+1 (555) 123-4567</span>
+                <span>+93 700 100 200</span>
               </li>
               <li className="flex items-center gap-3 text-xs sm:text-sm text-gray-400 group">
                 <FiMail className="text-[#AE2448] text-base sm:text-lg group-hover:scale-110 transition-transform shrink-0" />
-                <span>support@nexcart.com</span>
+                <span>fatema.ahmadi1384@gmail.com</span>
               </li>
               <li className="flex items-center gap-3 text-xs sm:text-sm text-gray-400 group">
                 <FiClock className="text-[#AE2448] text-base sm:text-lg group-hover:scale-110 transition-transform shrink-0" />

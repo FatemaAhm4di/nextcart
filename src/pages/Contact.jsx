@@ -29,10 +29,10 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: <FiMapPin className="text-2xl" />, title: "Visit Us", details: "123 Shopping Street, New York, NY 10001" },
-    { icon: <FiPhone className="text-2xl" />, title: "Call Us", details: "+1 (555) 123-4567", extra: "Mon-Fri 9AM-6PM" },
-    { icon: <FiMail className="text-2xl" />, title: "Email Us", details: "support@nexcart.com", extra: "24/7 response" },
-    { icon: <FiClock className="text-2xl" />, title: "Working Hours", details: "Monday - Friday", extra: "9:00 AM - 6:00 PM" },
+    { icon: <FiMapPin className="text-2xl" />, title: "Visit Us", details: "123 Shopping Street, Herat - Afghanistan", extra: "Downtown District" },
+    { icon: <FiPhone className="text-2xl" />, title: "Call Us", details: "+93 700 100 200", extra: "Mon-Fri 9AM-6PM" },
+    { icon: <FiMail className="text-2xl" />, title: "Email Us", details: "fatema.ahmadi1384@gmail.com", extra: "24/7 response" },
+    { icon: <FiClock className="text-2xl" />, title: "Working Hours", details: "Saturday - Wednesday", extra: "9:00 AM - 6:00 PM" },
   ];
 
   return (
@@ -75,11 +75,11 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Your Name *</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="John Doe" />
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Fatema Ahmadi" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Email Address *</label>
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="john@example.com" />
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="fatema.ahmadi1384@gmail.com" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Subject</label>
@@ -103,16 +103,16 @@ const Contact = () => {
               <p className="text-sm text-[#2D3A2B]/60 dark:text-gray-400 mb-6">Come say hello at our flagship location.</p>
               <div className="rounded-xl overflow-hidden h-64 md:h-80">
                 <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933132!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a316bb14269%3A0xb6a95bb981d9f2e2!2sNew%20York%20Public%20Library!5e0!3m2!1sen!2sus!4v1644345678901!5m2!1sen!2sus" 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3255.834601954786!2d62.19183607453209!3d34.35209285521738!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f9c4a8b7c5e6f8d%3A0x8e9f7c6b5a4d3e2f!2sHerat%2C%20Afghanistan!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus"
                   className="w-full h-full" 
                   allowFullScreen="" 
                   loading="lazy" 
-                  title="Store Location Map"
+                  title="Herat, Afghanistan Location Map"
                 ></iframe>
               </div>
               <div className="mt-4 flex items-center gap-2 text-sm text-[#2D3A2B]/70 dark:text-gray-300">
                 <FiMapPin className="text-[#AE2448]" />
-                <span>123 Shopping Street, New York, NY 10001</span>
+                <span>123 Shopping Street, Herat - Afghanistan</span>
               </div>
             </div>
           </div>
