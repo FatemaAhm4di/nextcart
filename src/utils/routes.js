@@ -1,4 +1,3 @@
-// src/utils/routes.js
 export const ROUTES = {
   HOME: '/',
   SHOP: '/shop',

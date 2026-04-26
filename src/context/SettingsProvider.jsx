@@ -1,9 +1,17 @@
-import { useReducer } from 'react'
+import { useReducer, useEffect } from 'react'
 import { SettingsContext } from './SettingsContext'
 import { settingsReducer, initialState } from './settingsReducer'
 
 export const SettingsProvider = ({ children }) => {
   const [state, dispatch] = useReducer(settingsReducer, initialState)
+
+  useEffect(() => {
+    if (state.theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [])
 
   const toggleTheme = () => dispatch({ type: 'TOGGLE_THEME' })
   const toggleViewMode = () => dispatch({ type: 'TOGGLE_VIEW' })

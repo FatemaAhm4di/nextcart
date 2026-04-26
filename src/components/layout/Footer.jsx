@@ -67,7 +67,7 @@ const Footer = () => {
   return (
     <footer className="bg-gradient-to-br from-gray-900 to-gray-950 text-gray-300 mt-auto">
       
-      {/* Features Section - ریسپانسیو */}
+      {/* Features Section*/}
       <div className="border-b border-gray-800">
         <div className="container-custom py-8 md:py-12 px-4 sm:px-6">
           <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
@@ -86,7 +86,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Main Footer - ریسپانسیو */}
       <div className="container-custom py-10 md:py-16 px-4 sm:px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
           
@@ -123,7 +122,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links - ریسپانسیو */}
+          {/* Quick Links */}
           <div>
             <h3 className="text-white font-semibold text-base md:text-lg mb-5 relative inline-block">
               Quick Links
@@ -144,7 +143,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Customer Service - ریسپانسیو */}
+          {/* Customer Service */}
           <div>
             <h3 className="text-white font-semibold text-base md:text-lg mb-5 relative inline-block">
               Customer Service
@@ -165,7 +164,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info - ریسپانسیو */}
+          {/* Contact Info */}
           <div>
             <h3 className="text-white font-semibold text-base md:text-lg mb-5 relative inline-block">
               Contact Info
@@ -193,7 +192,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Social Links - ریسپانسیو */}
+      {/* Social Links */}
       <div className="border-t border-gray-800">
         <div className="container-custom py-6 px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useSettings } from "../../hooks/useSettings";
 import { selectIsAuthenticated, selectUser, logout } from "../../features/auth/authSlice";
 import { 
-  FiShoppingCart, FiMenu, FiX, FiUser, FiSearch, FiSun, FiMoon,
+  FiShoppingCart, FiMenu, FiX, FiUser, FiSearch, 
   FiGrid, FiInfo, FiPhone, FiHome, FiHeart, FiLogOut, FiUserCheck, FiSettings, FiTag
 } from "react-icons/fi";
 import { toast } from "sonner";
@@ -25,7 +25,7 @@ export default function Navbar() {
   const cartCount = useSelector((state) => state.cart?.items?.reduce((sum, item) => sum + item.quantity, 0) || 0);
   const isAuthenticated = useSelector(selectIsAuthenticated);
   const user = useSelector(selectUser);
-  const { theme, toggleTheme } = useSettings();
+  useSettings();
 
   useEffect(() => {
     let isMounted = true;
@@ -106,18 +106,16 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8 py-2 sm:py-3">
           <div className="flex items-center justify-between gap-2 sm:gap-4">
             
-            {/* Logo */}
             <Link to="/" className="flex items-center gap-1.5 sm:gap-2 group shrink-0">
-  <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 bg-gradient-to-br from-[#AE2448] to-[#6E1A37] rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
-    <span className="text-white font-bold text-base sm:text-lg">N</span>
-  </div>
-  <div className="block">
-    <span className="text-sm sm:text-base md:text-xl font-bold text-[#AE2448] dark:text-white">NextCart</span>
-    <p className="text-[9px] sm:text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Premium Store</p>
-  </div>
-</Link>
+              <div className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 bg-gradient-to-br from-[#AE2448] to-[#6E1A37] rounded-lg sm:rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-transform duration-300">
+                <span className="text-white font-bold text-base sm:text-lg">N</span>
+              </div>
+              <div className="block">
+                <span className="text-sm sm:text-base md:text-xl font-bold text-[#AE2448] dark:text-white">NextCart</span>
+                <p className="text-[9px] sm:text-xs text-gray-500 dark:text-gray-400 hidden sm:block">Premium Store</p>
+              </div>
+            </Link>
 
-            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center gap-1 lg:gap-2">
               {navLinks.map((link) => (
                 <Link key={link.path} to={link.path} className={`relative flex items-center gap-1.5 lg:gap-2 px-3 lg:px-4 py-1.5 lg:py-2 rounded-full transition-all duration-300 text-sm lg:text-base ${isActive(link.path) ? 'text-[#AE2448] font-semibold' : 'text-gray-700 dark:text-gray-300 hover:text-[#AE2448]'}`}>
@@ -127,10 +125,8 @@ export default function Navbar() {
               ))}
             </div>
 
-            {/* Right Section */}
             <div className="flex items-center gap-1 sm:gap-2">
               
-              {/* Search Desktop */}
               <div ref={searchRef} className="hidden md:block relative">
                 <form onSubmit={handleSearch}>
                   <input type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} onFocus={() => setShowResults(true)} className="w-32 lg:w-48 xl:w-64 px-3 py-1.5 pl-8 rounded-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm text-gray-700 dark:text-gray-200 border border-gray-200 dark:border-gray-700 focus:border-[#AE2448] focus:ring-1 focus:ring-[#AE2448] outline-none text-sm transition-all" />
@@ -148,26 +144,19 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Search Mobile Icon */}
               <button onClick={() => setIsSearchOpen(!isSearchOpen)} className="md:hidden p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 <FiSearch className="text-base sm:text-xl text-gray-600 dark:text-gray-300" />
               </button>
 
-              {/* Wishlist */}
-              <Link to="/wishlist" className="hidden sm:flex p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"><FiHeart className="text-base sm:text-xl text-gray-600 dark:text-gray-300 hover:text-[#AE2448]" /></Link>
+              <Link to="/wishlist" className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition group">
+                <FiHeart className="text-base sm:text-xl text-gray-600 dark:text-gray-300 group-hover:text-[#AE2448] transition-colors" />
+              </Link>
 
-              {/* Cart */}
-              <Link to="/cart" className="relative p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                <FiShoppingCart className="text-base sm:text-xl text-gray-600 dark:text-gray-300 hover:text-[#AE2448]" />
+              <Link to="/cart" className="relative p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition group">
+                <FiShoppingCart className="text-base sm:text-xl text-gray-600 dark:text-gray-300 group-hover:text-[#AE2448] transition-colors" />
                 {cartCount > 0 && <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 bg-[#AE2448] text-white text-[10px] rounded-full flex items-center justify-center px-1 shadow-md">{cartCount > 99 ? "99+" : cartCount}</span>}
               </Link>
 
-              {/* Theme Toggle */}
-              <button onClick={toggleTheme} className="p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-                {theme === "dark" ? <FiSun className="text-base sm:text-xl text-yellow-500" /> : <FiMoon className="text-base sm:text-xl text-gray-600" />}
-              </button>
-
-              {/* User Dropdown */}
               <div className="relative" ref={dropdownRef}>
                 {isAuthenticated && user ? (
                   <>
@@ -196,7 +185,6 @@ export default function Navbar() {
                 )}
               </div>
 
-              {/* Mobile Menu Button */}
               <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="md:hidden p-1.5 sm:p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
                 {isMobileMenuOpen ? <FiX className="text-base sm:text-xl text-gray-600 dark:text-gray-300" /> : <FiMenu className="text-base sm:text-xl text-gray-600 dark:text-gray-300" />}
               </button>
@@ -205,7 +193,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Search Bar */}
       <div className={`fixed top-14 left-0 right-0 z-40 backdrop-blur-md bg-white/70 dark:bg-[#1a1a2e]/80 shadow-md p-3 transition-all md:hidden ${isSearchOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
         <form onSubmit={handleSearch} className="relative">
           <input type="text" placeholder="Search products..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="w-full px-3 py-2 pl-8 rounded-full bg-white/50 dark:bg-gray-800/50 border border-gray-200 dark:border-gray-700 focus:border-[#AE2448] outline-none text-sm" autoFocus />
@@ -226,7 +213,6 @@ export default function Navbar() {
 
       <div className="h-14 sm:h-16 md:h-20"></div>
 
-      {/* Mobile Menu */}
       <div className={`fixed top-14 sm:top-16 left-0 right-0 backdrop-blur-md bg-white/95 dark:bg-[#1a1a2e]/95 shadow-xl z-40 md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-[calc(100vh-56px)] opacity-100" : "max-h-0 opacity-0"}`}>
         <div className="flex flex-col p-4 space-y-2 overflow-y-auto">
           {navLinks.map((link) => (

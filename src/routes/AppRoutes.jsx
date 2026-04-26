@@ -6,8 +6,8 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import ProductDetails from "../pages/ProductDetails";
 import Wishlist from "../pages/Wishlist";
-import Login from "../pages/Login";        // ✅ اضافه کن
-import Register from "../pages/Register";  // ✅ اضافه کن
+import Login from "../pages/Login";        
+import Register from "../pages/Register";  
 import ProfilePage from "../pages/ProfilePage";
 import MyOrders from "../pages/MyOrders";
 import SettingsPage from "../pages/SettingsPage";
@@ -23,8 +23,8 @@ export default function AppRoutes() {
       <Route path="/contact" element={<Contact />} />
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/product/:id" element={<ProductDetails />} />
-      <Route path="/login" element={<Login />} />        // ✅ اضافه کن
-      <Route path="/register" element={<Register />} />  // ✅ اضافه کن
+      <Route path="/login" element={<Login />} />        
+      <Route path="/register" element={<Register />} />  
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/orders" element={<MyOrders />} />
 <Route path="/settings" element={<SettingsPage />} />

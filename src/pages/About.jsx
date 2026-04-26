@@ -27,11 +27,11 @@ const About = () => {
   return (
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e]">
       
-      {/* Hero Section - بدون فاصله از ناوبار */}
+      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-[#AE2448] to-[#6E1A37] py-12 sm:py-16 md:py-20">
         <div className="container-custom text-center text-white px-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
-            About <span className="text-[#F9D0CD]">NexCart</span>
+            About <span className="text-[#F9D0CD]">NextCart</span>
           </h1>
           <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">
             Your premier destination for quality products and exceptional shopping experience.
@@ -39,14 +39,14 @@ const About = () => {
         </div>
       </section>
 
-      {/* Story Section - با تصویر about.jpg */}
+      {/* Story Section */}
       <section className="container-custom py-12 md:py-20 px-4">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
           <div className="lg:w-1/2">
             <div className="rounded-2xl shadow-2xl overflow-hidden">
               <img 
                 src={aboutImage}
-                alt="About NexCart"
+                alt="About NextCart"
                 className="w-full h-64 sm:h-80 md:h-96 object-cover hover:scale-105 transition-transform duration-500"
               />
             </div>
@@ -57,7 +57,7 @@ const About = () => {
               Born from a passion for <span className="text-[#AE2448]">quality</span>
             </h2>
             <p className="text-[#2D3A2B]/70 dark:text-gray-300 leading-relaxed mb-4 text-sm sm:text-base">
-              Founded in 2024, NexCart emerged with a simple yet powerful vision: 
+              Founded in 2024, NextCart emerged with a simple yet powerful vision: 
               to revolutionize online shopping by offering premium products at accessible prices.
             </p>
             <p className="text-[#2D3A2B]/70 dark:text-gray-300 leading-relaxed mb-6 text-sm sm:text-base">
@@ -71,7 +71,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section - ریسپانسیو */}
+      {/* Stats Section */}
       <section className="bg-white dark:bg-[#2a2a2a] py-10 md:py-16">
         <div className="container-custom px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
@@ -86,7 +86,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section - ریسپانسیو */}
+      {/* Values Section*/}
       <section className="container-custom py-12 md:py-20 px-4">
         <div className="text-center mb-8 md:mb-14">
           <span className="text-[#AE2448] font-semibold text-sm uppercase tracking-wider">Our Values</span>
@@ -105,7 +105,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section - ریسپانسیو */}
+      {/* Team Section */}
       <section className="bg-white dark:bg-[#2a2a2a] py-12 md:py-20">
         <div className="container-custom px-4">
           <div className="text-center mb-8 md:mb-14">
@@ -126,11 +126,11 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA Section - ریسپانسیو */}
+      {/* CTA Section */}
       <section className="container-custom py-12 md:py-20 px-4">
         <div className="bg-gradient-to-r from-[#AE2448] to-[#6E1A37] rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-16 text-center text-white">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-3">Ready to start shopping?</h3>
-          <p className="text-white/80 text-sm sm:text-base mb-5 md:mb-6 max-w-md mx-auto">Join thousands of happy customers who trust NexCart</p>
+          <p className="text-white/80 text-sm sm:text-base mb-5 md:mb-6 max-w-md mx-auto">Join thousands of happy customers who trust NextCart</p>
           <Link to="/shop" className="inline-flex items-center gap-2 bg-white text-[#AE2448] px-6 md:px-8 py-2.5 md:py-3 rounded-full font-semibold text-sm sm:text-base hover:shadow-xl transition-all hover:scale-105">
             Shop Now <FiArrowRight />
           </Link>

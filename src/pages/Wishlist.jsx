@@ -62,7 +62,6 @@ const Wishlist = () => {
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
       <div className="container-custom px-4 sm:px-6">
         
-        {/* Header - ریسپانسیو */}
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 gap-4">
           <h1 className="text-2xl sm:text-3xl font-bold text-[#2D3A2B] dark:text-white text-center sm:text-left">
             My Wishlist <span className="text-sm text-[#AE2448]">({wishlistItems.length})</span>
@@ -75,14 +74,12 @@ const Wishlist = () => {
           </button>
         </div>
 
-        {/* Products Grid - کاملاً ریسپانسیو */}
         <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 md:gap-6">
           {wishlistItems.map((item) => (
             <div 
               key={item.id} 
               className="group bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-[#72BAA9]/20 hover:-translate-y-1"
             >
-              {/* Image Container - ریسپانسیو */}
               <div className="relative aspect-square bg-[#72BAA9]/10 flex items-center justify-center p-4 sm:p-5">
                 <img 
                   src={item.image} 
@@ -98,7 +95,6 @@ const Wishlist = () => {
                 </button>
               </div>
               
-              {/* Content - ریسپانسیو */}
               <div className="p-3 sm:p-4">
                 <h3 className="font-semibold text-[#2D3A2B] dark:text-white line-clamp-2 text-xs sm:text-sm mb-1 min-h-[2.5rem] sm:min-h-[3rem]">
                   {item.title}

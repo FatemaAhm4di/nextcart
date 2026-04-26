@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { FiChevronDown, FiGrid } from 'react-icons/fi'
 
-// دسته‌بندی‌هایی که واقعاً محصول دارن (بر اساس API DummyJSON)
 const categoriesList = [
   "Beauty",
   "Fragrances",
@@ -47,7 +46,6 @@ const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
 
   return (
     <div className="w-full">
-      {/* نمایش دراپ‌داون در موبایل و تبلت */}
       <div className="block md:hidden relative w-full" ref={dropdownRef}>
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -94,7 +92,6 @@ const ProductFilter = ({ selectedCategory, setSelectedCategory }) => {
         )}
       </div>
 
-      {/* نمایش دکمه‌های عادی در دسکتاپ */}
       <div className="hidden md:flex flex-wrap justify-center gap-3">
         <button
           onClick={() => handleSelect("all")}

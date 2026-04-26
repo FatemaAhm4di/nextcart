@@ -7,9 +7,7 @@ const apiClient = axios.create({
   timeout: 15000,
 })
 
-// نرمالایز کردن محصول با تصاویر متنوع از Picsum
 const normalizeProduct = (product) => {
-  // استفاده از picsum با id متفاوت برای هر محصول (تصاویر متنوع)
   const imageId = (product.id % 100) + 1
   const imageUrl = `https://picsum.photos/id/${imageId}/300/300`
   const thumbnailUrl = `https://picsum.photos/id/${imageId}/100/100`
@@ -29,34 +27,29 @@ const normalizeProduct = (product) => {
   }
 }
 
-// دریافت همه محصولات
 export const fetchProducts = async () => {
   const response = await apiClient.get('/products?limit=30')
   const products = response.data.products || []
   return products.map(normalizeProduct)
 }
 
-// دریافت محصول با آیدی
 export const fetchProductById = async (id) => {
   const response = await apiClient.get(`/products/${id}`)
   return normalizeProduct(response.data)
 }
 
-// دریافت دسته‌بندی‌ها
 export const fetchCategories = async () => {
   const response = await apiClient.get('/products/categories')
   const categories = response.data.map(cat => cat.name || cat)
   return categories
 }
 
-// دریافت محصولات بر اساس دسته‌بندی
 export const fetchProductsByCategory = async (category) => {
   const response = await apiClient.get(`/products/category/${category}`)
   const products = response.data.products || []
   return products.map(normalizeProduct)
 }
 
-// دریافت محصولات محدود
 export const fetchLimitedProducts = async (limit = 8) => {
   const response = await apiClient.get(`/products?limit=${limit}`)
   const products = response.data.products || []

@@ -59,7 +59,6 @@ export default function ProductDetails() {
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
       <div className="container-custom px-4 sm:px-6">
         
-        {/* Back Button - ریسپانسیو */}
         <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-[#2D3A2B] dark:text-gray-400 hover:text-[#AE2448] transition-colors duration-300 mb-4 sm:mb-6 group"
@@ -68,7 +67,6 @@ export default function ProductDetails() {
           <span className="text-sm sm:text-base">Back to Products</span>
         </button>
 
-        {/* Product Card - ریسپانسیو کامل */}
         <div className="bg-white dark:bg-[#2a2a2a] rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden">
           <div className="flex flex-col lg:flex-row gap-6 sm:gap-8 p-5 sm:p-6 md:p-8 lg:p-10">
             
@@ -83,7 +81,6 @@ export default function ProductDetails() {
               </div>
             </div>
 
-            {/* Info Section - ریسپانسیو */}
             <div className="lg:w-1/2 space-y-4 sm:space-y-5">
               
               {/* Category & Rating */}
@@ -113,7 +110,6 @@ export default function ProductDetails() {
                 {product.description}
               </p>
 
-              {/* Price - ریسپانسیو */}
               <div className="border-t border-b border-[#72BAA9]/20 py-3 sm:py-4">
                 <div className="flex items-baseline gap-2 sm:gap-3 flex-wrap">
                   <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#AE2448]">
@@ -128,7 +124,6 @@ export default function ProductDetails() {
                 </div>
               </div>
 
-              {/* Features - ریسپانسیو */}
               <div className="space-y-2 sm:space-y-3">
                 <div className="flex items-center gap-2 sm:gap-3 text-[#2D3A2B] dark:text-gray-300 text-sm sm:text-base">
                   <FiTruck className="text-[#AE2448] text-base sm:text-xl" />

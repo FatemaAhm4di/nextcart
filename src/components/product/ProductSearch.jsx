@@ -1,5 +1,3 @@
-
-
 const ProductSearch = () => {
     return (
         <div className="w-full h-[400px] bg-[#F5F5F5] rounded-lg flex items-center justify-center gap-6">

@@ -58,20 +58,18 @@ const Home = () => {
   return (
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e]">
       
-      {/* Hero Section - بدون فاصله از ناوبار */}
+      {/* Hero Section */}
       <section ref={heroRef} className="relative w-full overflow-hidden -mt-0">
-        {/* پس‌زمینه گرادیان */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#AE2448] to-[#6E1A37] z-0"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 md:py-12">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 lg:gap-10">
             
-            {/* متن سمت چپ */}
             <div className={`flex-1 text-center lg:text-left transition-all duration-700 delay-300 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
             }`}>
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight">
-                Welcome to <span className="text-yellow-300">NexCart</span>
+                Welcome to <span className="text-yellow-300">NextCart</span>
               </h1>
               <p className="text-white/80 text-xs sm:text-sm md:text-base mb-4 md:mb-5 max-w-lg mx-auto lg:mx-0">
                 Discover amazing products at unbeatable prices. Fast shipping & secure payment.
@@ -88,7 +86,6 @@ const Home = () => {
               </div>
             </div>
 
-            {/* تصویر سمت راست */}
             <div className={`flex-1 flex justify-center transition-all duration-700 delay-500 ${
               isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
             }`}>

@@ -39,12 +39,10 @@ const SettingsPage = () => {
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
       <div className="container-custom max-w-2xl mx-auto px-4 sm:px-6">
         
-        {/* Back Button - ریسپانسیو */}
         <Link to="/" className="inline-flex items-center gap-2 text-[#2D3A2B] dark:text-gray-400 hover:text-[#AE2448] mb-4 sm:mb-6 transition-colors text-sm sm:text-base">
           <FiArrowLeft className="text-sm sm:text-base" /> Back to Home
         </Link>
 
-        {/* Header - ریسپانسیو */}
         <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
           <FiSettings className="text-2xl sm:text-3xl text-[#AE2448]" />
           <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#2D3A2B] dark:text-white">Settings</h1>
@@ -52,7 +50,6 @@ const SettingsPage = () => {
 
         <div className="space-y-5 sm:space-y-6">
           
-          {/* Appearance - ریسپانسیو */}
           <div className="bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-lg p-5 sm:p-6">
             <h2 className="text-base sm:text-lg font-semibold text-[#2D3A2B] dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
               <FiMoon className="text-[#AE2448] text-sm sm:text-base" /> Appearance
@@ -73,7 +70,6 @@ const SettingsPage = () => {
             </div>
           </div>
 
-          {/* Notifications - ریسپانسیو */}
           <div className="bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-lg p-5 sm:p-6">
             <h2 className="text-base sm:text-lg font-semibold text-[#2D3A2B] dark:text-white mb-3 sm:mb-4 flex items-center gap-2">
               <FiBell className="text-[#AE2448] text-sm sm:text-base" /> Notifications
@@ -106,7 +102,6 @@ const SettingsPage = () => {
             </div>
           </div>
 
-          {/* Save Button - ریسپانسیو */}
           <button
             onClick={handleSavePreferences}
             className="w-full bg-gradient-to-r from-[#AE2448] to-[#6E1A37] text-white py-2.5 sm:py-3 rounded-xl font-semibold flex items-center justify-center gap-2 hover:scale-105 transition-all duration-300 shadow-lg text-sm sm:text-base"

@@ -32,13 +32,11 @@ const Login = () => {
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center py-8 sm:py-12 px-4">
       <div className="max-w-md w-full bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-xl p-6 sm:p-8 mx-4 sm:mx-0">
         
-        {/* Header - ریسپانسیو */}
         <div className="text-center mb-6 sm:mb-8">
           <h2 className="text-2xl sm:text-3xl font-bold text-[#2D3A2B] dark:text-white">Welcome Back</h2>
           <p className="text-sm sm:text-base text-[#2D3A2B]/60 dark:text-gray-400 mt-1 sm:mt-2">Sign in to your account</p>
         </div>
 
-        {/* Form - ریسپانسیو */}
         <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
           
           {/* Email Field */}

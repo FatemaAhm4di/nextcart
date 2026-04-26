@@ -60,11 +60,9 @@ const ProductCard = memo(({ product }) => {
     setTimeout(() => setIsTogglingWishlist(false), 500)
   }
 
-  // حالت لیست ویو - ریسپانسیو
   if (viewMode === 'list') {
     return (
       <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-[#72BAA9]/20">
-        {/* تصویر - سایزهای مختلف */}
         <div className="relative w-full xs:w-28 sm:w-32 md:w-36 h-32 xs:h-28 sm:h-32 md:h-36 bg-[#72BAA9]/10 flex items-center justify-center p-2 sm:p-3">
           <button
             onClick={handleToggleWishlist}
@@ -84,7 +82,6 @@ const ProductCard = memo(({ product }) => {
           />
         </div>
         
-        {/* اطلاعات - ریسپانسیو */}
         <div className="flex-1 p-3 sm:p-4 sm:p-3 sm:pr-4">
           <div className="flex flex-col xs:flex-row xs:items-start sm:items-center justify-between gap-2">
             <div className="flex-1">
@@ -121,11 +118,9 @@ const ProductCard = memo(({ product }) => {
     )
   }
 
-  // حالت گرید ویو - ریسپانسیو کامل
   return (
     <div className="group relative bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden card-hover border border-[#72BAA9]/20">
       
-      {/* دکمه ویسلینت */}
       <button
         onClick={handleToggleWishlist}
         disabled={isTogglingWishlist}
@@ -138,7 +133,6 @@ const ProductCard = memo(({ product }) => {
         <FiHeart className={`text-sm sm:text-base ${isWishlisted ? 'fill-white' : ''}`} />
       </button>
       
-      {/* تصویر - ریسپانسیو */}
       <div className="h-36 xs:h-40 sm:h-44 md:h-48 bg-gradient-to-br from-[#72BAA9]/20 to-[#72BAA9]/5 flex items-center justify-center p-3 sm:p-4">
         <img 
           src={product.image} 
@@ -149,7 +143,6 @@ const ProductCard = memo(({ product }) => {
         />
       </div>
       
-      {/* محتوا - ریسپانسیو */}
       <div className="p-2.5 sm:p-3">
         {/* دسته‌بندی */}
         <span className="text-[10px] sm:text-xs text-white bg-[#AE2448] px-1.5 sm:px-2 py-0.5 rounded-full capitalize inline-block">

@@ -49,7 +49,6 @@ const ProfilePage = () => {
     }
   };
 
-  // اگر کاربر لاگین نکرده باشه
   if (!user) {
     return (
       <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center px-4">
@@ -71,12 +70,10 @@ const ProfilePage = () => {
     <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-8 sm:py-12">
       <div className="container-custom max-w-4xl mx-auto px-4 sm:px-6">
         
-        {/* دکمه بازگشت - ریسپانسیو */}
         <Link to="/" className="inline-flex items-center gap-2 text-[#2D3A2B] dark:text-gray-400 hover:text-[#AE2448] mb-4 sm:mb-6 transition-colors text-sm sm:text-base">
           <FiArrowLeft className="text-sm sm:text-base" /> Back to Home
         </Link>
 
-        {/* Header - ریسپانسیو */}
         <div className="text-center mb-6 sm:mb-8">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2D3A2B] dark:text-white">My Profile</h1>
           <p className="text-xs sm:text-sm text-[#2D3A2B]/60 dark:text-gray-400 mt-1 sm:mt-2">Manage your account information</p>
@@ -84,7 +81,6 @@ const ProfilePage = () => {
 
         <div className="bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-xl overflow-hidden">
           
-          {/* Avatar Section - ریسپانسیو */}
           <div className="relative bg-gradient-to-r from-[#AE2448] to-[#6E1A37] p-6 sm:p-8 text-center">
             <div className="relative inline-block">
               <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center overflow-hidden border-4 border-white shadow-xl">
@@ -112,7 +108,6 @@ const ProfilePage = () => {
             <p className="text-white/80 text-xs sm:text-sm">{user?.email}</p>
           </div>
 
-          {/* Info Section - ریسپانسیو */}
           <div className="p-5 sm:p-6 md:p-8">
             <div className="flex justify-between items-center mb-5 sm:mb-6 flex-wrap gap-3 sm:gap-4">
               <h3 className="text-base sm:text-lg font-semibold text-[#2D3A2B] dark:text-white">Account Information</h3>
