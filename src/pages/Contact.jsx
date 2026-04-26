@@ -75,7 +75,7 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Your Name *</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your name" />
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#a12143] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your name" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Email Address *</label>
