@@ -83,7 +83,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Subject</label>
-                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#9b1e40] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Order inquiry" />
+                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#8d1c3a] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Order inquiry" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Message *</label>
