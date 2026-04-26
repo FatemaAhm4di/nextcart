@@ -79,15 +79,15 @@ const Contact = () => {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Email Address *</label>
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#a21f42] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your email" />
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#881d39] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your email" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Subject</label>
-                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#8d1c3a] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Order inquiry" />
+                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#881d39] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Order inquiry" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Message *</label>
-                  <textarea name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition resize-none" placeholder="Tell us how we can help..."></textarea>
+                  <textarea name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#881d39] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition resize-none" placeholder="Tell us how we can help..."></textarea>
                 </div>
                 <button type="submit" disabled={isSubmitting} className="w-full bg-[#AE2448] hover:bg-[#6E1A37] text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:scale-105 disabled:opacity-70">
                   {isSubmitting ? "Sending..." : <><FiSend /> Send Message</>}

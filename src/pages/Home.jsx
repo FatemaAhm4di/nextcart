@@ -5,7 +5,6 @@ import ProductCard from "../components/product/ProductCard";
 import ProductSkeleton from "../components/ui/ProductSkeleton";
 import ProductFilter from "../components/product/ProductFilter";
 import { FiArrowRight, FiTruck, FiShield, FiRefreshCw, FiAward } from "react-icons/fi";
-import heroImage from "../assets/images/hero-shopping.png";
 
 const Home = () => {
   const { data: allProducts, isLoading } = useProducts();
@@ -91,7 +90,7 @@ const Home = () => {
             }`}>
               <div className="relative w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px]">
                 <img 
-                  src={heroImage}
+                  src="/images/hero-shopping.png"
                   alt="NexCart Shopping"
                   className="relative w-full h-auto drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
                 />

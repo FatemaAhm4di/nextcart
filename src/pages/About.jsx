@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiAward, FiUsers, FiTruck, FiShield, FiHeart, FiStar } from "react-icons/fi";
-import aboutImage from "../assets/images/about.jpg";
 
 const About = () => {
   const stats = [
@@ -45,7 +44,7 @@ const About = () => {
           <div className="lg:w-1/2">
             <div className="rounded-2xl shadow-2xl overflow-hidden">
               <img 
-                src={aboutImage}
+                src="/images/about.jpg"
                 alt="About NextCart"
                 className="w-full h-64 sm:h-80 md:h-96 object-cover hover:scale-105 transition-transform duration-500"
               />
