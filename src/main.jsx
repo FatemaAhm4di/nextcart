@@ -25,7 +25,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <BrowserRouter>
           <SettingsProvider>
             <App />
-            {/* ✅ Toaster از Sonner */}
             <Toaster
               position="bottom-right"
               richColors
