@@ -51,7 +51,7 @@ const ProfilePage = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] flex items-center justify-center px-4">
         <div className="text-center">
           <p className="text-[#2D3A2B] dark:text-white mb-4 text-sm sm:text-base">Please login to view profile</p>
           <Link to="/login" className="bg-[#AE2448] text-white px-5 sm:px-6 py-2 rounded-lg text-sm sm:text-base">Login</Link>
@@ -67,7 +67,7 @@ const ProfilePage = () => {
   });
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-8 sm:py-12">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] py-8 sm:py-12">
       <div className="container-custom max-w-4xl mx-auto px-4 sm:px-6">
         
         <Link to="/" className="inline-flex items-center gap-2 text-[#2D3A2B] dark:text-gray-400 hover:text-[#AE2448] mb-4 sm:mb-6 transition-colors text-sm sm:text-base">
@@ -164,21 +164,21 @@ const ProfilePage = () => {
               </div>
             ) : (
               <div className="space-y-3 sm:space-y-4">
-                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#D5E7B5]/30 dark:bg-gray-800/50 rounded-xl">
+                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-bg-light/30 dark:bg-gray-800/50 rounded-xl">
                   <FiUser className="text-[#AE2448] text-base sm:text-xl" />
                   <div>
                     <p className="text-[10px] sm:text-xs text-[#2D3A2B]/60 dark:text-gray-400">Full Name</p>
                     <p className="font-medium text-[#2D3A2B] dark:text-white text-sm sm:text-base">{user?.name}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#D5E7B5]/30 dark:bg-gray-800/50 rounded-xl">
+                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-bg-light/30 dark:bg-gray-800/50 rounded-xl">
                   <FiMail className="text-[#AE2448] text-base sm:text-xl" />
                   <div>
                     <p className="text-[10px] sm:text-xs text-[#2D3A2B]/60 dark:text-gray-400">Email Address</p>
                     <p className="font-medium text-[#2D3A2B] dark:text-white text-sm sm:text-base">{user?.email}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-[#D5E7B5]/30 dark:bg-gray-800/50 rounded-xl">
+                <div className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 bg-bg-light/30 dark:bg-gray-800/50 rounded-xl">
                   <FiCalendar className="text-[#AE2448] text-base sm:text-xl" />
                   <div>
                     <p className="text-[10px] sm:text-xs text-[#2D3A2B]/60 dark:text-gray-400">Member Since</p>

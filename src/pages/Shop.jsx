@@ -36,7 +36,7 @@ const Shop = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
+      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-20 sm:pt-24 pb-6 sm:pb-8">
         <div className="container-custom px-4 sm:px-6">
           <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {[...Array(6)].map((_, i) => <ProductSkeleton key={i} />)}
@@ -49,7 +49,7 @@ const Shop = () => {
   if (error) return <Error message={error.message} />;
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-20 sm:pt-24 pb-6 sm:pb-8">
       <div className="container-custom px-4 sm:px-6">
         
         <div className="text-center mb-8 md:mb-10">

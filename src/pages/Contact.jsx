@@ -36,17 +36,15 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e]">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-16 sm:pt-20">
       
-      {/* Hero Section */}
-      <section className="bg-gradient-to-r from-[#AE2448] to-[#6E1A37] py-16 md:py-24">
+      <section className="bg-gradient-to-r from-[#AE2448] to-[#6E1A37] py-12 sm:py-16 md:py-20">
         <div className="container-custom text-center text-white px-4">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Contact <span className="text-[#F9D0CD]">Us</span></h1>
-          <p className="text-white/80 text-base md:text-lg max-w-2xl mx-auto">We'd love to hear from you. Get in touch with our team.</p>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">Contact <span className="text-[#F9D0CD]">Us</span></h1>
+          <p className="text-white/80 text-sm sm:text-base md:text-lg max-w-2xl mx-auto">We'd love to hear from you. Get in touch with our team.</p>
         </div>
       </section>
 
-      {/* Contact Info Cards */}
       <section className="container-custom py-12 md:py-16 px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {contactInfo.map((item, index) => (
@@ -62,11 +60,9 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Contact Form & Map */}
       <section className="container-custom pb-16 md:pb-24 px-4">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
           
-          {/* Form */}
           <div className="lg:w-1/2">
             <div className="bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-xl p-6 md:p-8">
               <h3 className="text-xl md:text-2xl font-bold text-[#2D3A2B] dark:text-white mb-2">Send us a message</h3>
@@ -75,19 +71,19 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Your Name *</label>
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#881d39] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your name" />
+                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your name" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Email Address *</label>
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#881d39] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your email" />
+                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Your email" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Subject</label>
-                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#8d1c3a] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Order inquiry" />
+                  <input type="text" name="subject" value={formData.subject} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition" placeholder="Order inquiry" />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-[#2D3A2B] dark:text-gray-300 mb-1">Message *</label>
-                  <textarea name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#881d39] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition resize-none" placeholder="Tell us how we can help..."></textarea>
+                  <textarea name="message" rows="4" value={formData.message} onChange={handleChange} className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 focus:border-[#AE2448] focus:ring-2 focus:ring-[#AE2448]/20 outline-none transition resize-none" placeholder="Tell us how we can help..."></textarea>
                 </div>
                 <button type="submit" disabled={isSubmitting} className="w-full bg-[#AE2448] hover:bg-[#6E1A37] text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition-all hover:scale-105 disabled:opacity-70">
                   {isSubmitting ? "Sending..." : <><FiSend /> Send Message</>}
@@ -96,7 +92,6 @@ const Contact = () => {
             </div>
           </div>
 
-          {/* Map */}
           <div className="lg:w-1/2">
             <div className="bg-white dark:bg-[#2a2a2a] rounded-2xl shadow-xl p-6 md:p-8 h-full">
               <h3 className="text-xl md:text-2xl font-bold text-[#2D3A2B] dark:text-white mb-2">Visit our store</h3>

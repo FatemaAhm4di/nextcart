@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/product/ProductCard";
@@ -10,13 +10,11 @@ const Home = () => {
   const { data: allProducts, isLoading } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(6);
-  const [isVisible] = useState(true);
-  const heroRef = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(() => {}, { threshold: 0.1 });
-    if (heroRef.current) observer.observe(heroRef.current);
-    return () => observer.disconnect();
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   const filteredProducts = allProducts?.filter((product) => {
@@ -36,7 +34,7 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-8">
+      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] py-8">
         <div className="container-custom">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {[...Array(6)].map((_, i) => <ProductSkeleton key={i} />)}
@@ -47,42 +45,39 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e]">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-16 sm:pt-20">
       
-      {/* Hero Section */}
-      <section ref={heroRef} className="relative w-full overflow-hidden">
+      <section className="relative w-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#AE2448] to-[#6E1A37] z-0"></div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-20">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
             
-            {/* متن سمت چپ */}
-            <div className={`flex-1 text-center lg:text-left transition-all duration-700 delay-300 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'
+            <div className={`flex-1 text-center lg:text-left transition-all duration-700 ease-out ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'
             }`}>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
-                Welcome to <span className="text-yellow-300">NexCart</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 md:mb-4 leading-tight">
+                Welcome to <span className="text-yellow-300">NextCart</span>
               </h1>
               <p className="text-white/80 text-sm sm:text-base md:text-lg mb-6 md:mb-8 max-w-lg mx-auto lg:mx-0">
                 Discover amazing products at unbeatable prices. Fast shipping & secure payment.
               </p>
-              <div className={`transition-all duration-700 delay-500 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+              <div className={`transition-all duration-700 delay-300 ease-out ${
+                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}>
                 <Link 
                   to="/shop" 
-                  className="inline-flex items-center gap-2 bg-white text-[#AE2448] hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-3.5 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
+                  className="inline-flex items-center gap-2 bg-white text-[#AE2448] hover:bg-gray-100 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 shadow-lg"
                 >
                   Shop Now <FiArrowRight className="text-sm sm:text-base" />
                 </Link>
               </div>
             </div>
 
-            {/* تصویر سمت راست */}
-            <div className={`flex-1 flex justify-center transition-all duration-700 delay-500 ${
-              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'
+            <div className={`flex-1 flex justify-center transition-all duration-700 delay-150 ease-out ${
+              isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'
             }`}>
-              <div className="relative w-full max-w-[260px] sm:max-w-[320px] md:max-w-[380px]">
+              <div className="relative w-full max-w-[240px] sm:max-w-[320px] md:max-w-[400px]">
                 <img 
                   src="/images/hero-shopping.png"
                   alt="NexCart Shopping"
@@ -94,22 +89,20 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Features */}
       <section className="container-custom py-12 sm:py-16 px-4 sm:px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {features.map((feature, index) => (
-            <div key={index} className="text-center p-3 sm:p-4 md:p-6 bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group cursor-pointer">
+            <div key={index} className="text-center p-3 sm:p-4 md:p-6 bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 group">
               <div className="text-[#AE2448] mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
                 {feature.icon}
               </div>
-              <h4 className="font-bold text-[#2D3A2B] dark:text-white text-xs sm:text-sm md:text-base mb-0.5 sm:mb-1">{feature.title}</h4>
+              <h4 className="font-bold text-[#2D3A2B] dark:text-white text-xs sm:text-sm md:text-base mb-0.5">{feature.title}</h4>
               <p className="text-[10px] sm:text-xs md:text-sm text-[#2D3A2B]/60 dark:text-gray-400">{feature.desc}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* Categories */}
       <section className="container-custom py-4 px-4 sm:px-6">
         <ProductFilter 
           selectedCategory={selectedCategory} 
@@ -117,7 +110,6 @@ const Home = () => {
         />
       </section>
 
-      {/* Products Grid */}
       <section className="container-custom py-8 sm:py-12 px-4 sm:px-6">
         <div className="text-center mb-6 sm:mb-10">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#2D3A2B] dark:text-white mb-2 sm:mb-3">
@@ -132,8 +124,8 @@ const Home = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-              {visibleProducts?.map((product) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+              {visibleProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
             </div>
@@ -145,7 +137,7 @@ const Home = () => {
                   className="inline-flex items-center gap-2 px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 rounded-full bg-transparent border-2 border-[#AE2448] text-[#AE2448] hover:bg-[#AE2448] hover:text-white font-semibold text-sm sm:text-base transition-all duration-300 hover:scale-105 hover:shadow-lg"
                 >
                   View More ({visibleCount} / {filteredProducts?.length})
-                  <FiArrowRight className="text-sm sm:text-base" />
+                  <FiArrowRight />
                 </button>
               </div>
             )}
@@ -153,12 +145,11 @@ const Home = () => {
         )}
       </section>
 
-      {/* CTA Banner */}
       <section className="container-custom py-12 sm:py-16 px-4 sm:px-6">
         <div className="relative overflow-hidden bg-gradient-to-r from-[#AE2448] to-[#6E1A37] rounded-2xl sm:rounded-3xl p-8 sm:p-10 md:p-14 lg:p-16 text-center text-white shadow-2xl">
           <div className="relative z-10">
-            <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Ready to Start Shopping?</h3>
-            <p className="text-white/80 text-sm sm:text-base md:text-lg mb-5 sm:mb-6 md:mb-8 max-w-md mx-auto px-4">Get the best deals on your favorite products</p>
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3">Ready to Start Shopping?</h3>
+            <p className="text-white/80 text-sm sm:text-base md:text-lg mb-5 md:mb-7 max-w-md mx-auto px-4">Get the best deals on your favorite products</p>
             <Link to="/shop" className="inline-flex items-center gap-2 bg-white text-[#AE2448] px-6 sm:px-8 md:px-10 py-2.5 sm:py-3 md:py-3.5 rounded-full font-semibold text-sm sm:text-base hover:shadow-xl transition-all duration-300 hover:scale-105">
               Shop Now <FiArrowRight />
             </Link>

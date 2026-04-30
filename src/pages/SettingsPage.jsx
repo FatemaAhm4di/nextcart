@@ -24,7 +24,7 @@ const SettingsPage = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] flex items-center justify-center px-4">
         <div className="text-center">
           <FiSettings className="text-5xl sm:text-6xl text-[#AE2448] mx-auto mb-3 sm:mb-4" />
           <h2 className="text-xl sm:text-2xl font-bold text-[#2D3A2B] dark:text-white mb-2">Please Login</h2>
@@ -36,7 +36,7 @@ const SettingsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] py-6 sm:py-8">
       <div className="container-custom max-w-2xl mx-auto px-4 sm:px-6">
         
         <Link to="/" className="inline-flex items-center gap-2 text-[#2D3A2B] dark:text-gray-400 hover:text-[#AE2448] mb-4 sm:mb-6 transition-colors text-sm sm:text-base">

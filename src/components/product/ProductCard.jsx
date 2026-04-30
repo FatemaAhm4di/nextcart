@@ -1,6 +1,6 @@
 import { memo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { FiShoppingCart, FiHeart, FiStar, FiCheck, FiAlertCircle } from 'react-icons/fi'
+import { FiShoppingCart, FiHeart, FiStar, FiCheck } from 'react-icons/fi'
 import { addItem } from '../../features/cart/cartSlice'
 import { toggleWishlist, selectWishlistItems } from '../../features/wishlist/wishlistSlice'
 import { formatPrice } from '../../utils/formatPrice'
@@ -14,6 +14,8 @@ const ProductCard = memo(({ product }) => {
   const isWishlisted = wishlistItems.some(item => item.id === product.id)
   const [isAdding, setIsAdding] = useState(false)
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false)
+  const [userRating, setUserRating] = useState(0)
+  const [hoverRating, setHoverRating] = useState(0)
 
   const handleImageError = (e) => {
     e.target.src = 'https://picsum.photos/id/1/300/300'
@@ -60,6 +62,43 @@ const ProductCard = memo(({ product }) => {
     setTimeout(() => setIsTogglingWishlist(false), 500)
   }
 
+  const handleRating = (rating) => {
+    setUserRating(rating)
+    toast.success(`You rated ${product.title.slice(0, 20)} ${rating} stars!`, {
+      icon: <FiStar className="w-4 h-4 text-yellow-500" />,
+      duration: 2000,
+    })
+  }
+
+  const renderStars = () => {
+    return (
+      <div className="flex items-center gap-0.5 sm:gap-1">
+        <div className="flex">
+          {[1, 2, 3, 4, 5].map((star) => (
+            <button
+              key={star}
+              onClick={() => handleRating(star)}
+              onMouseEnter={() => setHoverRating(star)}
+              onMouseLeave={() => setHoverRating(0)}
+              className="focus:outline-none transition-transform hover:scale-110"
+            >
+              <FiStar
+                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 transition-all ${
+                  star <= (hoverRating || userRating)
+                    ? "fill-yellow-500 text-yellow-500"
+                    : "text-gray-300 dark:text-gray-600"
+                }`}
+              />
+            </button>
+          ))}
+        </div>
+        <span className="text-[10px] sm:text-xs text-[#2D3A2B]/50 dark:text-gray-400">
+          ({userRating || "0"})
+        </span>
+      </div>
+    )
+  }
+
   if (viewMode === 'list') {
     return (
       <div className="flex flex-col xs:flex-row gap-3 sm:gap-4 bg-white dark:bg-[#2a2a2a] rounded-xl sm:rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group border border-[#72BAA9]/20">
@@ -91,6 +130,7 @@ const ProductCard = memo(({ product }) => {
               <p className="text-[10px] sm:text-xs text-[#2D3A2B]/60 dark:text-gray-400 capitalize mt-0.5 sm:mt-1">
                 {product.category}
               </p>
+              {renderStars()}
             </div>
             <div className="flex items-center gap-2 sm:gap-3">
               <span className="text-base sm:text-lg md:text-xl font-bold text-[#AE2448] whitespace-nowrap">
@@ -144,29 +184,16 @@ const ProductCard = memo(({ product }) => {
       </div>
       
       <div className="p-2.5 sm:p-3">
-        {/* دسته‌بندی */}
         <span className="text-[10px] sm:text-xs text-white bg-[#AE2448] px-1.5 sm:px-2 py-0.5 rounded-full capitalize inline-block">
           {product.category}
         </span>
         
-        {/* عنوان */}
         <h3 className="font-semibold text-[#2D3A2B] dark:text-white mt-1.5 sm:mt-2 line-clamp-2 h-8 sm:h-10 text-xs sm:text-sm">
           {product.title}
         </h3>
         
-        {/* امتیاز */}
-        <div className="flex items-center gap-0.5 sm:gap-1 mt-1 sm:mt-1.5">
-          <div className="flex text-yellow-500">
-            <FiStar className="fill-current w-2.5 h-2.5 sm:w-3 sm:h-3" />
-            <FiStar className="fill-current w-2.5 h-2.5 sm:w-3 sm:h-3" />
-            <FiStar className="fill-current w-2.5 h-2.5 sm:w-3 sm:h-3" />
-            <FiStar className="fill-current w-2.5 h-2.5 sm:w-3 sm:h-3" />
-            <FiStar className="fill-current w-2.5 h-2.5 sm:w-3 sm:h-3" />
-          </div>
-          <span className="text-[10px] sm:text-xs text-[#2D3A2B]/50 dark:text-gray-400">(4.5)</span>
-        </div>
+        {renderStars()}
         
-        {/* قیمت و دکمه سبد خرید */}
         <div className="flex items-center justify-between mt-2 sm:mt-3">
           <span className="text-sm sm:text-base md:text-lg font-bold text-[#AE2448]">
             {formatPrice(product.price)}

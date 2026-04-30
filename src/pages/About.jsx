@@ -24,9 +24,8 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e]">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-16 sm:pt-20">
       
-      {/* Hero Section */}
       <section className="relative bg-gradient-to-r from-[#AE2448] to-[#6E1A37] py-12 sm:py-16 md:py-20">
         <div className="container-custom text-center text-white px-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4">
@@ -38,7 +37,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Story Section */}
       <section className="container-custom py-12 md:py-20 px-4">
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-center">
           <div className="lg:w-1/2">
@@ -70,7 +68,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
       <section className="bg-white dark:bg-[#2a2a2a] py-10 md:py-16">
         <div className="container-custom px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
@@ -85,7 +82,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Values Section*/}
       <section className="container-custom py-12 md:py-20 px-4">
         <div className="text-center mb-8 md:mb-14">
           <span className="text-[#AE2448] font-semibold text-sm uppercase tracking-wider">Our Values</span>
@@ -104,7 +100,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
       <section className="bg-white dark:bg-[#2a2a2a] py-12 md:py-20">
         <div className="container-custom px-4">
           <div className="text-center mb-8 md:mb-14">
@@ -125,7 +120,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="container-custom py-12 md:py-20 px-4">
         <div className="bg-gradient-to-r from-[#AE2448] to-[#6E1A37] rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-16 text-center text-white">
           <h3 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 md:mb-3">Ready to start shopping?</h3>

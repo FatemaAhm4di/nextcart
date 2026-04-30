@@ -77,7 +77,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="bg-[#D5E7B5] dark:bg-[#1a1a2e] min-h-screen py-8">
+    <div className="bg-bg-light dark:bg-[#1a1a2e] min-h-screen py-8">
       <div className="container-custom animate-fade-in">
         <div className="flex flex-col lg:flex-row gap-8">
           

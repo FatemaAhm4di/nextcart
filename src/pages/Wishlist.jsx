@@ -59,7 +59,7 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-6 sm:py-8">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] py-6 sm:py-8">
       <div className="container-custom px-4 sm:px-6">
         
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 sm:mb-8 gap-4">

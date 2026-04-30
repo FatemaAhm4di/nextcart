@@ -61,7 +61,7 @@ const MyOrders = () => {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] flex items-center justify-center">
+      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] flex items-center justify-center">
         <div className="text-center">
           <FiPackage className="text-6xl text-[#AE2448] mx-auto mb-4" />
           <h2 className="text-2xl font-bold text-[#2D3A2B] dark:text-white mb-2">Please Login</h2>
@@ -73,7 +73,7 @@ const MyOrders = () => {
   }
 
   return (
-    <div className="min-h-screen bg-[#D5E7B5] dark:bg-[#1a1a2e] py-8">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] py-8">
       <div className="container-custom max-w-4xl mx-auto px-4">
         
         <Link to="/" className="inline-flex items-center gap-2 text-[#2D3A2B] dark:text-gray-400 hover:text-[#AE2448] mb-6 transition-colors">
@@ -123,7 +123,7 @@ const MyOrders = () => {
                   ))}
                 </div>
 
-                <div className="p-4 bg-[#D5E7B5]/30 dark:bg-gray-800/50 rounded-b-2xl flex flex-wrap justify-between items-center gap-3">
+                <div className="p-4 bg-bg-light/30 dark:bg-gray-800/50 rounded-b-2xl flex flex-wrap justify-between items-center gap-3">
                   <div>
                     <p className="text-sm text-gray-500">Total Amount</p>
                     <p className="text-xl font-bold text-[#AE2448]">{formatPrice(order.total)}</p>

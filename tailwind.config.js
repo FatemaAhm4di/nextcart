@@ -16,7 +16,7 @@ export default {
           light: '#8ED4C2',
         },
         bg: {
-          light: '#D5E7B5',
+          light: '#F8F9FA',
           dark: '#1a1a2e',
         },
         card: {
