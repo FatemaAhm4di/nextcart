@@ -96,7 +96,7 @@
 - npm or yarn
 
 ### Installation
-
+```
 # Clone the repository
 git clone https://github.com/FatemaAhm4di/nextcart.git
 
