@@ -96,7 +96,7 @@ const Home = () => {
               <div className="text-[#AE2448] mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
                 {feature.icon}
               </div>
-              <h4 className="font-bold text-[#2D3A2B] dark:text-white text-xs sm:text-sm md:text-base mb-0.5">{feature.title}</h4>
+              <h4 className="font-bold text-[#2d3a2b] dark:text-white text-xs sm:text-sm md:text-base mb-0.5">{feature.title}</h4>
               <p className="text-[10px] sm:text-xs md:text-sm text-[#2D3A2B]/60 dark:text-gray-400">{feature.desc}</p>
             </div>
           ))}
