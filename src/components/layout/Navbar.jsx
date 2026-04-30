@@ -8,6 +8,7 @@ import {
   FiGrid, FiInfo, FiPhone, FiHome, FiHeart, FiLogOut, 
   FiUserCheck, FiSettings, FiTag, FiSun, FiMoon
 } from "react-icons/fi";
+import ViewToggle from "../ui/ViewToggle";
 import { toast } from "sonner";
 
 export default function Navbar() {
@@ -144,7 +145,7 @@ export default function Navbar() {
                   </div>
                 </form>
                 {showResults && searchResults.length > 0 && (
-                  <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 animate-fade-in">
+                  <div className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50">
                     {searchResults.slice(0, 5).map((p) => (
                       <button key={p.id} onClick={() => handleProductClick(p.id)} className="w-full flex items-center gap-3 p-3 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-left">
                         <img src={p.thumbnail} className="w-10 h-10 object-cover rounded-lg" />
@@ -165,6 +166,11 @@ export default function Navbar() {
               <Link to="/wishlist" className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 <FiHeart className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 hover:text-[#AE2448] transition-colors" />
               </Link>
+
+              {/* ViewToggle فقط در دسکتاپ نمایش داده بشه */}
+              <div className="hidden lg:block">
+                <ViewToggle />
+              </div>
 
               <button onClick={toggleTheme} className="hidden lg:block p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
                 {theme === "dark" ? <FiSun className="text-lg sm:text-xl text-yellow-500" /> : <FiMoon className="text-lg sm:text-xl text-gray-600" />}
@@ -195,7 +201,7 @@ export default function Navbar() {
                       </span>
                     </button>
                     {isUserDropdownOpen && (
-                      <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50 animate-fade-in">
+                      <div className="absolute right-0 mt-2 w-56 bg-white dark:bg-gray-800 rounded-xl shadow-xl border border-gray-200 dark:border-gray-700 overflow-hidden z-50">
                         <div className="p-3 border-b border-gray-200 dark:border-gray-700 flex items-center gap-3">
                           {user.avatar ? (
                             <img src={user.avatar} alt="avatar" className="w-10 h-10 rounded-full object-cover" />
@@ -210,18 +216,18 @@ export default function Navbar() {
                           </div>
                         </div>
                         <div className="py-1">
-                          <Link to="/profile" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                            <FiUserCheck className="text-base" /> Profile
+                          <Link to="/profile" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <FiUserCheck /> Profile
                           </Link>
-                          <Link to="/orders" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                            <FiTag className="text-base" /> Orders
+                          <Link to="/orders" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <FiTag /> Orders
                           </Link>
-                          <Link to="/settings" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-                            <FiSettings className="text-base" /> Settings
+                          <Link to="/settings" onClick={() => setIsUserDropdownOpen(false)} className="flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <FiSettings /> Settings
                           </Link>
                           <div className="border-t border-gray-200 dark:border-gray-700 my-1"></div>
-                          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
-                            <FiLogOut className="text-base" /> Logout
+                          <button onClick={handleLogout} className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
+                            <FiLogOut /> Logout
                           </button>
                         </div>
                       </div>
@@ -243,7 +249,6 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Search Bar */}
       <div className={`fixed top-16 left-0 right-0 z-40 bg-white dark:bg-gray-900 shadow-xl p-4 transition-all duration-300 md:hidden ${isSearchOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'}`}>
         <form onSubmit={handleSearch} className="relative">
           <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -274,7 +279,8 @@ export default function Navbar() {
         )}
       </div>
 
-      {/* Mobile Menu */}
+      <div className="h-16"></div>
+
       <div className={`fixed top-16 left-0 right-0 bg-white dark:bg-gray-900 shadow-xl z-40 md:hidden transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-[calc(100vh-64px)] opacity-100" : "max-h-0 opacity-0"}`}>
         <div className="flex flex-col p-4 space-y-1 overflow-y-auto max-h-[calc(100vh-64px)]">
           {navLinks.map((link) => (

@@ -29,7 +29,7 @@ export const settingsReducer = (state, action) => {
     case TOGGLE_THEME: {
       const newTheme = state.theme === 'light' ? 'dark' : 'light'
       localStorage.setItem('nexcart_theme', newTheme)
-      applyTheme(newTheme)  // مستقیماً اعمال کن
+      applyTheme(newTheme)
       return { ...state, theme: newTheme }
     }
     

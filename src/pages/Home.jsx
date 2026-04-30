@@ -45,7 +45,7 @@ const Home = () => {
   }
 
   return (
-    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-16 sm:pt-20">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e]">
       
       <section className="relative w-full overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-[#AE2448] to-[#6E1A37] z-0"></div>
@@ -96,7 +96,7 @@ const Home = () => {
               <div className="text-[#AE2448] mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
                 {feature.icon}
               </div>
-              <h4 className="font-bold text-[#2d3a2b] dark:text-white text-xs sm:text-sm md:text-base mb-0.5">{feature.title}</h4>
+              <h4 className="font-bold text-[#2D3A2B] dark:text-white text-xs sm:text-sm md:text-base mb-0.5">{feature.title}</h4>
               <p className="text-[10px] sm:text-xs md:text-sm text-[#2D3A2B]/60 dark:text-gray-400">{feature.desc}</p>
             </div>
           ))}

@@ -36,10 +36,31 @@ const Shop = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-20 sm:pt-24 pb-6 sm:pb-8">
+      <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-16 sm:pt-20 pb-6 sm:pb-8">
         <div className="container-custom px-4 sm:px-6">
           <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
-            {[...Array(6)].map((_, i) => <ProductSkeleton key={i} />)}
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-gray-200 dark:bg-gray-700 rounded-xl sm:rounded-2xl overflow-hidden">
+                  <div className="h-36 xs:h-40 sm:h-44 md:h-48 bg-gradient-to-br from-gray-300 to-gray-200 dark:from-gray-700 dark:to-gray-600"></div>
+                  <div className="p-3 space-y-3">
+                    <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/4"></div>
+                    <div className="h-5 bg-gray-300 dark:bg-gray-600 rounded w-3/4"></div>
+                    <div className="flex gap-1">
+                      <div className="h-3 w-3 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                      <div className="h-3 w-3 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                      <div className="h-3 w-3 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                      <div className="h-3 w-3 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                      <div className="h-3 w-3 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                    </div>
+                    <div className="flex justify-between items-center pt-2">
+                      <div className="h-6 w-16 bg-gray-300 dark:bg-gray-600 rounded"></div>
+                      <div className="h-8 w-8 bg-gray-300 dark:bg-gray-600 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -49,7 +70,7 @@ const Shop = () => {
   if (error) return <Error message={error.message} />;
 
   return (
-    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-20 sm:pt-24 pb-6 sm:pb-8">
+    <div className="min-h-screen bg-bg-light dark:bg-[#1a1a2e] pt-16 sm:pt-20 pb-6 sm:pb-8">
       <div className="container-custom px-4 sm:px-6">
         
         <div className="text-center mb-8 md:mb-10">
@@ -95,7 +116,7 @@ const Shop = () => {
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+            <div className="grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
               {visibleProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

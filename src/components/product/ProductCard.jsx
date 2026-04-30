@@ -14,7 +14,13 @@ const ProductCard = memo(({ product }) => {
   const isWishlisted = wishlistItems.some(item => item.id === product.id)
   const [isAdding, setIsAdding] = useState(false)
   const [isTogglingWishlist, setIsTogglingWishlist] = useState(false)
-  const [userRating, setUserRating] = useState(0)
+  
+  const getInitialRating = () => {
+    const saved = localStorage.getItem(`rating_${product.id}`)
+    return saved ? parseInt(saved) : 0
+  }
+  
+  const [userRating, setUserRating] = useState(getInitialRating)
   const [hoverRating, setHoverRating] = useState(0)
 
   const handleImageError = (e) => {
@@ -64,6 +70,7 @@ const ProductCard = memo(({ product }) => {
 
   const handleRating = (rating) => {
     setUserRating(rating)
+    localStorage.setItem(`rating_${product.id}`, rating)
     toast.success(`You rated ${product.title.slice(0, 20)} ${rating} stars!`, {
       icon: <FiStar className="w-4 h-4 text-yellow-500" />,
       duration: 2000,
